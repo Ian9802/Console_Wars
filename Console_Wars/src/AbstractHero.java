@@ -1,13 +1,11 @@
+
 /**
- * An abstract class for tiles
- * 
+ * A hero
+ *
  * @author samynpd.
  *         Created Jan 30, 2014.
  */
-public abstract class AbstractTile {
-	
+public class AbstractHero {
 	private int xPos;
 	private int yPos;
-	
-	
 }
