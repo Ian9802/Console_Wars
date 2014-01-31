@@ -1,24 +1,25 @@
 package console_wars;
+
 /**
- * An abstract class for tiles
- * 
+ * A Unit
+ *
  * @author samynpd.
  *         Created Jan 30, 2014.
  */
-public abstract class AbstractTile {
-	
+public class AbstractUnit {
 	private int xPos;
 	private int yPos;
 	
 	/**
-	 * AbstarctTile constructor.
+	 * AbstractUnit Constructor
 	 *
 	 * @param xPos
 	 * @param yPos
 	 */
-	public AbstractTile(int xPos, int yPos) {
+	public AbstractUnit(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
+		
 	}
 	
 	/**

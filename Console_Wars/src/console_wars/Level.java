@@ -22,7 +22,7 @@ public class Level extends JComponent {
 	private int numCols;
 	private ArrayList<String> levelData = new ArrayList<String>();
 	private AbstractTile[][] tileList;
-	private AbstractHero[][] heroList;
+	private AbstractUnit[][] heroList;
 	private int levelID;
 	private JFrame frame;
 	

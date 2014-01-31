@@ -12,6 +12,7 @@ public class Game {
 	private JFrame frame;
 	private Level level;
 	private KeyBoardListener movementListener;
+	private MouseListener mouseListener;
 	private int levelID;
 	
 	/**
