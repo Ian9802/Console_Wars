@@ -1,3 +1,4 @@
+package console_wars;
 /**
  * An abstract class for tiles
  * 
