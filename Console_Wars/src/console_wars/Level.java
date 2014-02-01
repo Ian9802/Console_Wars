@@ -1,4 +1,8 @@
 package console_wars;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -55,20 +59,54 @@ public class Level extends JComponent {
 		}
 		
 		// Create a scanner
-		Scanner inputScanner = null;
-		try {
-			inputScanner = new Scanner(inputFile);
-		} catch (FileNotFoundException exception) {
-			exception.printStackTrace();
-		}
+//		Scanner inputScanner = null;
+//		try {
+//			inputScanner = new Scanner(inputFile);
+//		} catch (FileNotFoundException exception) {
+//			exception.printStackTrace();
+//		}
 		
 		// Get all the rows as strings
-		while (inputScanner.hasNext()) {
-			String nextChar = inputScanner.next();
-			this.levelData.add(nextChar);
+//		while (inputScanner.hasNext()) {
+//			String nextChar = inputScanner.next();
+//			this.levelData.add(nextChar);
+//		}
+		
+		this.tileList = new AbstractTile[10][10];
+				
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				this.tileList[i][j] = new AbstractTile(i*720/10,j*720/10);
+				
+				
+				System.out.printf("%d, %d \n", this.tileList[i][j].getX(), this.tileList[i][j].getY());
+			}
 		}
 		
 		
 	}
+	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param g
+	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(Color.WHITE);
+		Rectangle2D.Double background = new Rectangle2D.Double(0, 0, Main.WINDOW_SIZE.width, Main.WINDOW_SIZE.height);
+		g2.fill(background);
+		g2.draw(background);
+		
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				this.tileList[i][j].draw(g2);
+			}
+		}
+	}
+	
 	
 }

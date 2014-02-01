@@ -12,7 +12,7 @@ public class Main {
 	/**
 	 * Constants
 	 */
-	public static final Dimension WINDOW_SIZE = new Dimension(1280, 720);
+	public static final Dimension WINDOW_SIZE = new Dimension(720, 720);
 	@SuppressWarnings("javadoc")
 	public static final int TILE_SIZE = 72;
 	

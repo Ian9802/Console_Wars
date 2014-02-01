@@ -32,9 +32,12 @@ public class Game {
 	 *
 	 */
 	public void start() {
-//		this.level = new Level(this.levelID, this.frame, this);
+		this.level = new Level(this.levelID, this.frame, this);
+		
+		
 		
 		this.frame.setVisible(true);
+		this.frame.add(this.level);
 	}
 	
 }
