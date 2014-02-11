@@ -30,6 +30,8 @@ public class Level extends JComponent {
 	private int levelID;
 	private JFrame frame;
 	
+	private MouseListener mouseListener = new MouseListener(this.frame, this.game);
+	
 	/**
 	 * Constructs level with given levelID
 	 *
@@ -41,6 +43,10 @@ public class Level extends JComponent {
 		this.game = game;
 		this.levelID = levelID;
 		this.frame = frame;
+		
+		addMouseMotionListener(this.mouseListener);
+		addMouseListener(this.mouseListener);
+		
 		loadLevel();
 	}
 	
@@ -76,7 +82,7 @@ public class Level extends JComponent {
 				
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				this.tileList[i][j] = new AbstractTile(i*720/10,j*720/10);
+				this.tileList[i][j] = new AbstractTile(i * Main.TILE_SIZE, j * Main.TILE_SIZE);
 				
 				
 				System.out.printf("%d, %d \n", this.tileList[i][j].getX(), this.tileList[i][j].getY());
@@ -107,6 +113,14 @@ public class Level extends JComponent {
 			}
 		}
 	}
-	
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public AbstractTile[][] getTileList() {
+		return this.tileList;
+	}
 	
 }

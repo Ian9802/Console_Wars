@@ -1,6 +1,7 @@
 package console_wars;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.math.*;
 
 /**
@@ -10,8 +11,8 @@ import java.math.*;
  */
 public class SQLBackend {
 
-	private static String username = "";
-	private static String password = "";
+	private static String username = "samynpd";
+	private static String password = "W3lcom3!!";
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
 	private static Connection conn;
@@ -63,8 +64,10 @@ public class SQLBackend {
 		}
 	}
 
-	public static void getCompanies() {
+	public static Company[] getCompanies() {
 
+		ArrayList<Company> companies = new ArrayList<Company>();
+		
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -77,13 +80,17 @@ public class SQLBackend {
 					String name = rs.getString("name");
 					String hq = rs.getString("HQ");
 					int perks = rs.getInt("perks");
-					System.out.println(name + " " + hq + " " + " " + perks);
+//					System.out.println(name + " " + hq + " " + " " + perks);
+					
+					companies.add(new Company(name, hq, perks));
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return companies.toArray(new Company[companies.size()]);
 	}
 
 	public static void getUnits() {
@@ -204,6 +211,38 @@ public class SQLBackend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String[] getCompaniesNamesList() {
+
+		Company[] companies = getCompanies();
+		ArrayList<String> names = new ArrayList<String>();
+		
+		for (int i = 0; i < companies.length; i++) {
+			names.add(companies[i].getName());
+		}
+//		
+//		try {
+//
+//			Statement s1 = conn.createStatement();
+//			ResultSet rs = s1
+//					.executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
+//
+//			if (rs != null) {
+//				while (rs.next()) {
+//
+//					String name = rs.getString("name");
+//					
+//					names.add(name);
+//				}
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		String[] namesArray = names.toArray(new String[names.size()]);
+		return namesArray;
 	}
 	
 	public static void queryDB(String query) {
