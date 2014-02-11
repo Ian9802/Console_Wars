@@ -14,7 +14,9 @@ public class Main {
 	 */
 	public static final Dimension WINDOW_SIZE = new Dimension(720, 720);
 	@SuppressWarnings("javadoc")
-	public static final int TILE_SIZE = 72;
+	public static final int TILE_SIZE = WINDOW_SIZE.height / 10;
+	public static final int NUM_PLAYERS = 3;
+	public static final Dimension BOARD_DIMENSION_BY_TILE = new Dimension(10, 10);
 	
 	/**
 	 * @param args
@@ -22,11 +24,11 @@ public class Main {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.start();
-		SQLBackend.connectToDB();
-		SQLBackend.getCompanies();
-		SQLBackend.getUnits();
-		SQLBackend.getGenerals();
-		SQLBackend.getRegions();
+//		SQLBackend.connectToDB();
+//		SQLBackend.getCompanies();
+//		SQLBackend.getUnits();
+//		SQLBackend.getGenerals();
+//		SQLBackend.getRegions();
 		
 	}
 }
