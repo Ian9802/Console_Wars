@@ -35,12 +35,29 @@ public class Game {
 	public void start() {
 		SQLBackend.connectToDB(); // must do or none of the qureies will work
 		factionSelectMenu();
-		this.level = new Level(0, this.frame, this);
-		
+//		this.level = new Level(0, this.frame, this);
+		this.level = levelSelectMenu();
 		
 		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
+	}
+	
+	public Level levelSelectMenu() {
+		Integer[] levelChoices = SQLBackend.getLevelIDsList(this.frame, this);
+		String[] choices = new String[levelChoices.length];
+		for (int i = 0; i < choices.length; i++) {
+			choices[i] = levelChoices.toString();
+		}
+						
+		int selection = JOptionPane.showOptionDialog(null,
+			"Select Level", "Console Wars",
+			JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+			choices, "0");
+		
+		Level[] levels = SQLBackend.getLevels(this.frame, this);
+		return levels[selection];
+		
 	}
 	
 	/**

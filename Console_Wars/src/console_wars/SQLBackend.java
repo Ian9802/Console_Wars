@@ -2,7 +2,10 @@ package console_wars;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.awt.Color;
 import java.math.*;
+
+import javax.swing.JFrame;
 
 /**
  * TODO Put here a description of what this class does.
@@ -16,6 +19,7 @@ public class SQLBackend {
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
 	private static Connection conn;
+	private static String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
 
 	/**
 	 * TODO Put here a description of what this method does.
@@ -255,6 +259,68 @@ public class SQLBackend {
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public static Integer[] getLevelIDsList(JFrame frame, Game game) {
+		Level[] levels = getLevels(frame, game);
+		ArrayList<Integer> names = new ArrayList<Integer>();
+		
+		for (int i = 0; i < levels.length; i++) {
+			names.add(levels[i].getLevelID());
+		}
+		return names.toArray(new Integer[names.size()]);
+	}
+	
+	public static Level[] getLevels(JFrame frame, Game game) {
+		
+		ArrayList<Level> levels = new ArrayList<Level>();
+		
+		try {
+
+			Statement s1 = conn.createStatement();
+			ResultSet rs = s1
+					.executeQuery("SELECT TOP 1000 * FROM [Console_Wars].[dbo].[LevelLayout]");
+
+			if (rs != null) {
+				while (rs.next()) {
+					int levelID = rs.getInt("layoutID");
+					Level newLevel = new Level(levelID, frame, game);
+					
+					for (int i = 0; i < letters.length; i++) {
+						for (int j = 0; j < 10; j++) {
+							String key = letters[i] + j;
+							
+							int tileInt = rs.getInt(key);
+							
+							AbstractTile tile = new AbstractTile(i * Main.TILE_SIZE, j * Main.TILE_SIZE);
+							
+							if(tileInt == 1) {
+								//
+							} else if(tileInt == 2) {
+								tile.setMoveThrough(false);
+								tile.setColor(Color.black);
+							} else {
+								//
+							}
+							
+							newLevel.setTile(i, j, tile);
+							
+						}
+					}
+					levels.add(newLevel);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return levels.toArray(new Level[levels.size()]);
 	}
 
 }

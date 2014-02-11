@@ -90,4 +90,7 @@ public class AbstractTile {
 		setColor(this.color);
 	}
 	
+	public void setMoveThrough(Boolean bool) {
+		this.canMoveThrough = bool;
+	}
 }

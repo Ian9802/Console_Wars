@@ -125,4 +125,12 @@ public class Level extends JComponent {
 		return this.tileList;
 	}
 	
+	public void setTile(int index1, int index2, AbstractTile tile) {
+		this.tileList[index1][index2] = tile;
+	}
+	
+	public int getLevelID() {
+		return this.levelID; 
+	}
+	
 }
