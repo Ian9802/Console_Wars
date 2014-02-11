@@ -82,6 +82,8 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Tile: %d, %d \n",tileXIndex, tileYIndex);
 		
+		this.game.highlightTile(tileXIndex, tileYIndex);
+		
 //		AbstractTile[][] tileList = this.game.getTileList();
 //		tileList[tileXIndex][tileYIndex].highlight();
 //		

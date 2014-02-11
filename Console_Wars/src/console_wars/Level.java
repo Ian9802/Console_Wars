@@ -30,7 +30,7 @@ public class Level extends JComponent {
 	private int levelID;
 	private JFrame frame;
 	
-	private MouseListener mouseListener = new MouseListener(this.frame, this.game);
+	private MouseListener mouseListener;
 	
 	/**
 	 * Constructs level with given levelID
@@ -44,9 +44,6 @@ public class Level extends JComponent {
 		this.levelID = levelID;
 		this.frame = frame;
 		
-		addMouseMotionListener(this.mouseListener);
-		addMouseListener(this.mouseListener);
-		
 		loadLevel();
 	}
 	
@@ -55,6 +52,11 @@ public class Level extends JComponent {
 	 *
 	 */
 	void loadLevel() {
+		
+		this.mouseListener = new MouseListener(this.frame, this.game);
+		addMouseMotionListener(this.mouseListener);
+		addMouseListener(this.mouseListener);
+		
 		// local for now, eventually will use backend
 		
 		// Name the input file

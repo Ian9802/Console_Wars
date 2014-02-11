@@ -12,8 +12,7 @@ public class Game {
 	
 	private JFrame frame;
 	private Level level;
-	private KeyBoardListener movementListener;
-	private int levelID;
+//	private KeyBoardListener movementListener;
 	private Player[] players;
 	
 	/**
@@ -36,7 +35,7 @@ public class Game {
 	public void start() {
 		SQLBackend.connectToDB(); // must do or none of the qureies will work
 		factionSelectMenu();
-		this.level = new Level(this.levelID, this.frame, this);
+		this.level = new Level(0, this.frame, this);
 		
 		
 		
@@ -44,6 +43,10 @@ public class Game {
 		this.frame.add(this.level);
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
 	public void factionSelectMenu() {
 		
 		String[] choices = SQLBackend.getCompaniesNamesList();
@@ -87,7 +90,19 @@ public class Game {
 	 */
 	public AbstractTile[][] getTileList() {
 		// TODO Auto-generated method stub.
-		return level.getTileList();
+		return this.level.getTileList();
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param tileXIndex
+	 * @param tileYIndex
+	 */
+	public void highlightTile(int tileXIndex, int tileYIndex) {
+		this.level.getTileList()[tileXIndex][tileYIndex].highlight();
+		this.frame.repaint();
+		
 	}
 	
 }
