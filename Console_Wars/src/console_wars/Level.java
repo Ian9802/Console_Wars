@@ -134,20 +134,41 @@ public class Level extends JComponent {
 			return tileSet;
 		}
 		
-		if(!(tile.getX()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.width) || !(tile.getY()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.height)) {
-			return tileSet;
-		}
+		//if(!(tile.getX()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.width) || !(tile.getY()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.height)) {
+		//	return tileSet;
+		//}
+		
+		//do in all directions
 		
 		tileSet.add(tile);
 		
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1); //do in all directions
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
-		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+		if(tile.getX()/Main.TILE_SIZE-1 >= 0){
+			if(tile.getY()/Main.TILE_SIZE-1 >= 0){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+			}
+			if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+			}
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
+		}
+		if(tile.getX()/Main.TILE_SIZE+1 <= 10){
+			if(tile.getY()/Main.TILE_SIZE-1 >= 0){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+			}
+			if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+			}
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
+		}
+		
+		if(tile.getY()/Main.TILE_SIZE-1 >= 0){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+		}
+		if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+		}
+		
+		
 		return tileSet;
 	}
 	
