@@ -13,6 +13,7 @@ import java.awt.geom.Rectangle2D;
 public class AbstractUnit {
 	private int xPos;
 	private int yPos;
+	private boolean isGeneral;
 	
 	/**
 	 * AbstractUnit Constructor
@@ -42,6 +43,15 @@ public class AbstractUnit {
 	 */
 	public int getY() {
 		return this.yPos;
+	}
+	
+	/**
+	 * Return if a general exists in the unit
+	 * 
+	 * 
+	 */
+	public boolean isGeneral(){
+		return this.isGeneral;
 	}
 	
 }

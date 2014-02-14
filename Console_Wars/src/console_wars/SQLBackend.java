@@ -14,8 +14,9 @@ import javax.swing.JFrame;
  */
 public class SQLBackend {
 
-	private static String username = "samynpd";
-	private static String password = "W3lcom3!!";
+	private static String username = "morrista";
+	private static String password = "";
+
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
 	private static Connection conn;
@@ -315,7 +316,7 @@ public class SQLBackend {
 			if (rs != null) {
 				while (rs.next()) {
 					int levelID = rs.getInt("layoutID");
-					Level newLevel = new Level(levelID, frame, game);
+					Level newLevel = new Level(levelID, frame, game);  
 					
 					for (int i = 0; i < letters.length; i++) {
 						for (int j = 0; j < 10; j++) {
