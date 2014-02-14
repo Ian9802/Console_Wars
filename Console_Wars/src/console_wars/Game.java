@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  * @author samynpd.
  *         Created Jan 30, 2014.
  */
-public class Game {
+public class Game {                                                                                                               
 	
 	private JFrame frame;
 	private Level level;
