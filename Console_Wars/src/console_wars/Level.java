@@ -146,16 +146,16 @@ public class Level extends JComponent {
 			if(tile.getY()/Main.TILE_SIZE-1 >= 0){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
 			}
-			if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+			if(tile.getY()/Main.TILE_SIZE+1 < 10){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
 			}
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
 		}
-		if(tile.getX()/Main.TILE_SIZE+1 <= 10){
+		if(tile.getX()/Main.TILE_SIZE+1 < 10){
 			if(tile.getY()/Main.TILE_SIZE-1 >= 0){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
 			}
-			if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+			if(tile.getY()/Main.TILE_SIZE+1 < 10){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
 			}
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
@@ -164,7 +164,7 @@ public class Level extends JComponent {
 		if(tile.getY()/Main.TILE_SIZE-1 >= 0){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
 		}
-		if(tile.getY()/Main.TILE_SIZE+1 <= 10){
+		if(tile.getY()/Main.TILE_SIZE+1 < 10){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
 		}
 		
