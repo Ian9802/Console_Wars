@@ -47,7 +47,7 @@ public class Game {
 		Integer[] levelChoices = SQLBackend.getLevelIDsList(this.frame, this);
 		String[] choices = new String[levelChoices.length];
 		for (int i = 0; i < choices.length; i++) {
-			choices[i] = levelChoices.toString();
+			choices[i] = levelChoices[i].toString();
 		}
 						
 		int selection = JOptionPane.showOptionDialog(null,
@@ -118,8 +118,21 @@ public class Game {
 	 */
 	public void highlightTile(int tileXIndex, int tileYIndex) {
 		this.level.getTileList()[tileXIndex][tileYIndex].highlight();
+		
 		this.frame.repaint();
 		
+	}
+	
+	public void highlightSurroundingTiles(int tileXIndex, int tileYIndex) {
+		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2);
+		for (int i = 0; i < tileListToHighlight.length; i++) {
+			tileListToHighlight[i].highlight();
+		}
+		this.frame.repaint();
+	}
+	
+	public Level getLevel() {
+		return this.level;
 	}
 	
 }

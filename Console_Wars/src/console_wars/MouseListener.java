@@ -34,7 +34,9 @@ public class MouseListener implements MouseInputListener {
 		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
 		
 		System.out.printf("Clicked: %d, %d \n",tileXIndex, tileYIndex);
-
+		
+//		this.game.highlightTile(tileXIndex, tileYIndex);
+		this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
 	}
 
 	@Override
@@ -82,7 +84,7 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Tile: %d, %d \n",tileXIndex, tileYIndex);
 		
-		this.game.highlightTile(tileXIndex, tileYIndex);
+//		this.game.highlightTile(tileXIndex, tileYIndex);
 		
 //		AbstractTile[][] tileList = this.game.getTileList();
 //		tileList[tileXIndex][tileYIndex].highlight();

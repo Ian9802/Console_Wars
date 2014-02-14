@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public class SQLBackend {
 
 	private static String username = "samynpd";
-	private static String password = "";
+	private static String password = "W3lcom3!!";
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
 	private static Connection conn;
@@ -68,6 +68,11 @@ public class SQLBackend {
 		}
 	}
 
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
 	public static Company[] getCompanies() {
 
 		ArrayList<Company> companies = new ArrayList<Company>();
@@ -97,6 +102,10 @@ public class SQLBackend {
 		return companies.toArray(new Company[companies.size()]);
 	}
 
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
 	public static void getUnits() {
 
 		try {
@@ -131,6 +140,10 @@ public class SQLBackend {
 		}
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
 	public static void getGenerals() {
 
 		try {
@@ -165,6 +178,10 @@ public class SQLBackend {
 		}
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
 	public static void getRegions() {
 
 		try {
@@ -191,6 +208,10 @@ public class SQLBackend {
 		}
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
 	public static void getPlayer() {
 		//TODO
 		try {
@@ -217,6 +238,11 @@ public class SQLBackend {
 		}
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
 	public static String[] getCompaniesNamesList() {
 
 		Company[] companies = getCompanies();

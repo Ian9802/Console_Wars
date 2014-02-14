@@ -6,7 +6,9 @@ import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -130,7 +132,46 @@ public class Level extends JComponent {
 	}
 	
 	public int getLevelID() {
-		return this.levelID; 
+		return this.levelID;
+	}
+	
+	public AbstractTile[] getTilesToHighlight(int xInd, int yInd, int radius) {
+		
+		HashSet<AbstractTile> tileSet = new HashSet<AbstractTile>();
+		
+		tileSet = getTilesToHighlightHelper(this.tileList[xInd][yInd], tileSet, radius);
+		
+		AbstractTile[] tileList = tileSet.toArray(new AbstractTile[tileSet.size()]);
+		
+		return tileList;
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param abstractTile
+	 */
+	private HashSet<AbstractTile> getTilesToHighlightHelper(AbstractTile tile, HashSet<AbstractTile> tileSet, int radius) {
+		
+		if(radius == 0) {
+			return tileSet;
+		}
+		
+		if(!(tile.getX()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.width) || !(tile.getY()/Main.TILE_SIZE < Main.BOARD_DIMENSION_BY_TILE.height)) {
+			return tileSet;
+		}
+		
+		tileSet.add(tile);
+		
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1); //do in all directions
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE+1][tile.getY()/Main.TILE_SIZE-1], tileSet, radius-1);
+		tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE-1][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
+		return tileSet;
 	}
 	
 }
