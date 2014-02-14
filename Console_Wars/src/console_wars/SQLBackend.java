@@ -14,8 +14,8 @@ import javax.swing.JFrame;
  */
 public class SQLBackend {
 
-	private static String username = "morrista";
-	private static String password = "";
+	private static String username = "samynpd";
+	private static String password = "W3lcom3!!";
 
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 

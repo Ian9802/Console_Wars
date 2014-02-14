@@ -14,6 +14,7 @@ public class Game {
 	private Level level;
 //	private KeyBoardListener movementListener;
 	private Player[] players;
+	private Level[] levels;
 	
 	/**
 	 * 
@@ -55,8 +56,8 @@ public class Game {
 			JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
 			choices, "0");
 		
-		Level[] levels = SQLBackend.getLevels(this.frame, this);
-		return levels[selection];
+		this.levels = SQLBackend.getLevels(this.frame, this);
+		return this.levels[selection];
 		
 	}
 	

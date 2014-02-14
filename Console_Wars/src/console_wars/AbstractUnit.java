@@ -47,11 +47,20 @@ public class AbstractUnit {
 	
 	/**
 	 * Return if a general exists in the unit
+	 * @return 
 	 * 
 	 * 
 	 */
-	public boolean isGeneral(){
+	public boolean getIsGeneral(){
 		return this.isGeneral;
+	}
+	
+	public int getXIndex(){
+		return this.getX()/Main.TILE_SIZE;
+	}
+	
+	public int getYIndex(){
+		return this.getY()/Main.TILE_SIZE;
 	}
 	
 }

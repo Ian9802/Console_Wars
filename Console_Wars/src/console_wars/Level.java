@@ -59,37 +59,14 @@ public class Level extends JComponent {
 		addMouseMotionListener(this.mouseListener);
 		addMouseListener(this.mouseListener);
 		
-		// local for now, eventually will use backend
+		this.tileList = new AbstractTile[10][10];	
 		
-		// Name the input file
-		String fileName = "src//Console_Wars//Level_" + this.levelID + ".txt";
-		File inputFile = new File(fileName);
-		if (!inputFile.exists()) {
-			System.out.println("Level " + this.levelID + " does not exist");
-		}
-		
-		// Create a scanner
-//		Scanner inputScanner = null;
-//		try {
-//			inputScanner = new Scanner(inputFile);
-//		} catch (FileNotFoundException exception) {
-//			exception.printStackTrace();
-//		}
-		
-		// Get all the rows as strings
-//		while (inputScanner.hasNext()) {
-//			String nextChar = inputScanner.next();
-//			this.levelData.add(nextChar);
-//		}
-		
-		this.tileList = new AbstractTile[10][10];
-				
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				this.tileList[i][j] = new AbstractTile(i * Main.TILE_SIZE, j * Main.TILE_SIZE);
 				
 				
-				System.out.printf("%d, %d \n", this.tileList[i][j].getX(), this.tileList[i][j].getY());
+//				System.out.printf("%d, %d \n", this.tileList[i][j].getX(), this.tileList[i][j].getY());
 			}
 		}
 		
