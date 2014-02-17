@@ -20,7 +20,8 @@ public class SQLBackend {
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
 	private static Connection conn;
-	private static String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
+	private static String[] letters = { "a", "b", "c", "d", "e", "f", "g", "h",
+			"i", "j" };
 
 	/**
 	 * TODO Put here a description of what this method does.
@@ -71,13 +72,13 @@ public class SQLBackend {
 
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 * @return
 	 */
 	public static Company[] getCompanies() {
 
 		ArrayList<Company> companies = new ArrayList<Company>();
-		
+
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -90,8 +91,8 @@ public class SQLBackend {
 					String name = rs.getString("name");
 					String hq = rs.getString("HQ");
 					int perks = rs.getInt("perks");
-//					System.out.println(name + " " + hq + " " + " " + perks);
-					
+					// System.out.println(name + " " + hq + " " + " " + perks);
+
 					companies.add(new Company(name, hq, perks));
 				}
 			}
@@ -99,16 +100,17 @@ public class SQLBackend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return companies.toArray(new Company[companies.size()]);
 	}
 
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 */
-	public static void getUnits() {
+	public static Units[] getUnits() {
 
+		ArrayList<Units> units = new ArrayList<Units>();
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -139,14 +141,16 @@ public class SQLBackend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return units.toArray(new Units[units.size()]);
 	}
-	
+
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 */
-	public static void getGenerals() {
+	public static Units[] getGenerals() {
 
+		ArrayList<Units> units = new ArrayList<Units>();
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -177,11 +181,12 @@ public class SQLBackend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return units.toArray(new Units[units.size()]);
 	}
-	
+
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 */
 	public static void getRegions() {
 
@@ -200,7 +205,9 @@ public class SQLBackend {
 					int resourcesAmmo = rs.getInt("resourcesAmmo");
 					int resourcesFuel = rs.getInt("resourcesFuel");
 
-					System.out.println(regionID + " " + controlling + " " + controlValue + " " + resourcesAmmo + " " + resourcesFuel);
+					System.out.println(regionID + " " + controlling + " "
+							+ controlValue + " " + resourcesAmmo + " "
+							+ resourcesFuel);
 				}
 			}
 
@@ -208,13 +215,13 @@ public class SQLBackend {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 */
 	public static void getPlayer() {
-		//TODO
+		// TODO
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -230,7 +237,9 @@ public class SQLBackend {
 					int resourcesAmmo = rs.getInt("resourcesAmmo");
 					int resourcesFuel = rs.getInt("resourcesFuel");
 
-					System.out.println(regionID + " " + controlling + " " + controlValue + " " + resourcesAmmo + " " + resourcesFuel);
+					System.out.println(regionID + " " + controlling + " "
+							+ controlValue + " " + resourcesAmmo + " "
+							+ resourcesFuel);
 				}
 			}
 
@@ -238,44 +247,44 @@ public class SQLBackend {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 * @return
 	 */
 	public static String[] getCompaniesNamesList() {
 
 		Company[] companies = getCompanies();
 		ArrayList<String> names = new ArrayList<String>();
-		
+
 		for (int i = 0; i < companies.length; i++) {
 			names.add(companies[i].getName());
 		}
-//		
-//		try {
-//
-//			Statement s1 = conn.createStatement();
-//			ResultSet rs = s1
-//					.executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
-//
-//			if (rs != null) {
-//				while (rs.next()) {
-//
-//					String name = rs.getString("name");
-//					
-//					names.add(name);
-//				}
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
+		//
+		// try {
+		//
+		// Statement s1 = conn.createStatement();
+		// ResultSet rs = s1
+		// .executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
+		//
+		// if (rs != null) {
+		// while (rs.next()) {
+		//
+		// String name = rs.getString("name");
+		//
+		// names.add(name);
+		// }
+		// }
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		String[] namesArray = names.toArray(new String[names.size()]);
 		return namesArray;
 	}
-	
+
 	public static void queryDB(String query) {
 		// not useful since dont know return values
 
@@ -290,23 +299,23 @@ public class SQLBackend {
 
 	/**
 	 * TODO Put here a description of what this method does.
-	 *
+	 * 
 	 * @return
 	 */
 	public static Integer[] getLevelIDsList(JFrame frame, Game game) {
 		Level[] levels = getLevels(frame, game);
 		ArrayList<Integer> names = new ArrayList<Integer>();
-		
+
 		for (int i = 0; i < levels.length; i++) {
 			names.add(levels[i].getLevelID());
 		}
 		return names.toArray(new Integer[names.size()]);
 	}
-	
+
 	public static Level[] getLevels(JFrame frame, Game game) {
-		
+
 		ArrayList<Level> levels = new ArrayList<Level>();
-		
+
 		try {
 
 			Statement s1 = conn.createStatement();
@@ -316,27 +325,28 @@ public class SQLBackend {
 			if (rs != null) {
 				while (rs.next()) {
 					int levelID = rs.getInt("layoutID");
-					Level newLevel = new Level(levelID, frame, game);  
-					
+					Level newLevel = new Level(levelID, frame, game);
+
 					for (int i = 0; i < letters.length; i++) {
 						for (int j = 0; j < 10; j++) {
 							String key = letters[i] + j;
-							
+
 							int tileInt = rs.getInt(key);
-							
-							AbstractTile tile = new AbstractTile(i * Main.TILE_SIZE, j * Main.TILE_SIZE);
-							
-							if(tileInt == 1) {
+
+							AbstractTile tile = new AbstractTile(i
+									* Main.TILE_SIZE, j * Main.TILE_SIZE);
+
+							if (tileInt == 1) {
 								//
-							} else if(tileInt == 2) {
+							} else if (tileInt == 2) {
 								tile.setMoveThrough(false);
 								tile.setColor(Color.black);
 							} else {
 								//
 							}
-							
+
 							newLevel.setTile(i, j, tile);
-							
+
 						}
 					}
 					levels.add(newLevel);
@@ -346,7 +356,7 @@ public class SQLBackend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return levels.toArray(new Level[levels.size()]);
 	}
 
