@@ -98,6 +98,8 @@ public class SQLBackend {
 					String genName = rs.getString("genName");
 					int mobility = rs.getInt("mobility");
 					int life = rs.getInt("life");
+					
+					units.add(new Units(unitName, ability, attack, defense, attackRange, type, name, genName, mobility, life));
 
 					System.out.println(unitName + " " + ability + " " + attack
 							+ " " + defense + " " + attackRange + " " + type
@@ -138,7 +140,9 @@ public class SQLBackend {
 					String genName = rs.getString("genName");
 					int mobility = rs.getInt("mobility");
 					int life = rs.getInt("life");
-
+					
+					units.add(new Units(unitName, ability, attack, defense, attackRange, type, name, genName, mobility, life));
+					
 					System.out.println(unitName + " " + ability + " " + attack
 							+ " " + defense + " " + attackRange + " " + type
 							+ " " + name + " " + genName + " " + mobility + " "

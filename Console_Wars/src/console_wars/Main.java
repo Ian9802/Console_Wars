@@ -1,6 +1,7 @@
 package console_wars;
 
 import java.awt.Dimension;
+import java.io.IOException;
 
 
 /**
@@ -20,8 +21,9 @@ public class Main {
 	
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Game game = new Game();
 		game.start();
 		

@@ -1,5 +1,6 @@
 package console_wars;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -15,22 +16,23 @@ public class CharacterMenu {
 	private ImageIcon image;
 	
 	
-	CharacterMenu(int selection) throws IOException{
+	public CharacterMenu(int selection) throws IOException{
 		
 		generalMenu(selection);
 	}
 
 
-	private void generalMenu(int selection) throws IOException {
+	public void generalMenu(int selection) throws IOException {
 		this.frame = new JFrame("General Selection");
+		this.frame.setSize(Main.WINDOW_SIZE);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel contentPane = new JPanel();
 		Units[] general = SQLBackend.getUnits();
 		//This is Microsoft
-		String genString = general[selection].toString();
-		this.image = new ImageIcon(ImageIO.read(getClass().getResource(genString + ".jpg")));
+		String genString = general[selection].getGenName();
+		this.image = new ImageIcon(ImageIO.read(new File(genString + ".jpg")));
 		JButton genImageButton = new JButton(genString);
-		genImageButton.setIcon(image);
+		genImageButton.setIcon(this.image);
 		genImageButton.setHorizontalTextPosition(AbstractButton.CENTER);
 		genImageButton.setVerticalTextPosition(AbstractButton.BOTTOM);
 		
