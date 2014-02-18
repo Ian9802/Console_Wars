@@ -15,6 +15,7 @@ public class Units {
 	private int xPos;
 	private int yPos;
 	private boolean isGeneral;
+	private boolean isDead;
 
 	/**
 	 * TODO Put here a description of what this constructor does.
@@ -49,6 +50,7 @@ public class Units {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.isGeneral = isGeneral;
+		this.isDead = false;
 	}
 	
 	/**
@@ -83,6 +85,7 @@ public class Units {
 		this.genName = genName;
 		this.mobility = mobility;
 		this.life = life;
+		this.isDead = false;
 	}
 	
 	/**
@@ -201,4 +204,19 @@ public class Units {
 		this.life = life;
 	}
 
+	public void takeDamage(int attack){
+		int damage = attack - this.defense;
+		this.life -= damage;
+		if(this.life <= 0){
+			this.isDead = true;
+		}
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
 }
