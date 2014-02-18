@@ -37,6 +37,8 @@ public class MouseListener implements MouseInputListener {
 		
 //		this.game.highlightTile(tileXIndex, tileYIndex);
 		this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
+		this.game.unHighlightSurroundingTiles();
+		
 	}
 
 	@Override

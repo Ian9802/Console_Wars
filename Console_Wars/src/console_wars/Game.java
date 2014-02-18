@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  *         Created Jan 30, 2014.
  */
 public class Game {                                                                                                               
-	
+	private AbstractTile[] previouslyHighlightedTiles;
 	private JFrame frame;
 	private Level level;
 //	private KeyBoardListener movementListener;
@@ -125,9 +125,17 @@ public class Game {
 	}
 	
 	public void highlightSurroundingTiles(int tileXIndex, int tileYIndex) {
-		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2);
+		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2); //set to 2 for testing purposes
 		for (int i = 0; i < tileListToHighlight.length; i++) {
 			tileListToHighlight[i].highlight();
+		}
+		this.previouslyHighlightedTiles = tileListToHighlight;
+		this.frame.repaint();
+	}
+	
+	public void unHighlightSurroundingTiles() {
+		for (int i = 0; i < this.previouslyHighlightedTiles.length; i++) {
+			this.previouslyHighlightedTiles[i].highlight();
 		}
 		this.frame.repaint();
 	}

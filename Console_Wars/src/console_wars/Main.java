@@ -24,11 +24,6 @@ public class Main {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.start();
-//		SQLBackend.connectToDB();
-//		SQLBackend.getCompanies();
-//		SQLBackend.getUnits();
-//		SQLBackend.getGenerals();
-//		SQLBackend.getRegions();
 		
 	}
 }
