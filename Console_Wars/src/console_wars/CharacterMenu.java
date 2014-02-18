@@ -1,5 +1,6 @@
 package console_wars;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -29,7 +30,7 @@ public class CharacterMenu {
 		Units[] general = SQLBackend.getUnits();
 		//This is Microsoft
 		String genString = general[selection].getGenName();
-		this.image = new ImageIcon(ImageIO.read(getClass().getResource(genString + ".jpg")));
+		this.image = new ImageIcon(ImageIO.read(new File(genString + ".jpg")));
 		JButton genImageButton = new JButton(genString);
 		genImageButton.setIcon(this.image);
 		genImageButton.setHorizontalTextPosition(AbstractButton.CENTER);
