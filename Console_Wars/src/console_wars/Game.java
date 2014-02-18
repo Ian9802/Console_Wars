@@ -99,7 +99,6 @@ public class Game {
 					chosen[selection] = 1;
 					nonProperSelection = false;
 				}
-				this.characters.generalMenu(0);
 				
 			}
 			

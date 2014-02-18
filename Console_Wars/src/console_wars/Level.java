@@ -71,10 +71,15 @@ public class Level extends JComponent {
 			}
 		}
 		
+		this.unitList = SQLBackend.getUnitLayout(this.levelID);
+		
 	}
 	
 	void loadLevelUnits() {
+		
 		this.unitList = new Units[10][10];
+
+		
 	}
 	
 	/**

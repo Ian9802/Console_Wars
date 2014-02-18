@@ -332,11 +332,82 @@ public class SQLBackend {
 		return levels.toArray(new Level[levels.size()]);
 	}
 
-	public static Units getLevelUnitForName(String name) {
+	public static Units getUnitForName(String unitNameRequested) {
 		
+		Units unit = null;
+		try {
+
+			Statement s1 = conn.createStatement();
+			ResultSet rs = s1
+					.executeQuery("SELECT [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units] WHERE [unitName] = '" + unitNameRequested + "'");
+
+			if (rs != null) {
+				while (rs.next()) {
+					String unitName = rs.getString("unitName");
+					int ability = rs.getInt("ability");
+					int attack = rs.getInt("attack");
+					int defense = rs.getInt("defense");
+					int attackRange = rs.getInt("attackRange");
+					int type = rs.getInt("type");
+					String name = rs.getString("name");
+					String genName = rs.getString("genName");
+					int mobility = rs.getInt("mobility");
+					int life = rs.getInt("life");
+					
+					unit = new Units(unitName, ability, attack, defense, attackRange, type, name, genName, mobility, life);
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return null;
+		return unit;
 		
+	}
+	
+	/**
+	 * TODO Put here a description of what this method does.
+	 * 
+	 */
+	public static Units[][] getUnitLayout(int layoutNum) {
+
+		Units[][] unitList = new Units[10][10];
+		
+		try {
+
+			Statement s1 = conn.createStatement();
+			ResultSet rs = s1
+					.executeQuery("SELECT * FROM [Console_Wars].[dbo].[UnitLayout] WHERE [unitID] = " + layoutNum);
+
+			if (rs != null) {
+				while (rs.next()) {
+
+					for (int i = 0; i < letters.length; i++) {
+						for (int j = 0; j < 10; j++) {
+							String key = letters[i] + j;
+
+							String unitName = rs.getString(key);
+
+							if (unitName.equals("x")) {
+								unitList[i][j] = null;
+								System.out.println("null");
+							} else {
+								unitList[i][j] = getUnitForName(unitName);
+								System.out.println(unitList[i][j].getUnitName());
+							}
+
+						}
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return unitList;
 	}
 	
 }
