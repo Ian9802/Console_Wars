@@ -99,6 +99,9 @@ public class Game {
 					chosen[selection] = 1;
 					nonProperSelection = false;
 				}
+
+				new CharacterMenu(selection);
+				
 				
 			}
 			

@@ -101,10 +101,6 @@ public class SQLBackend {
 					
 					units.add(new Units(unitName, ability, attack, defense, attackRange, type, name, genName, mobility, life));
 
-					System.out.println(unitName + " " + ability + " " + attack
-							+ " " + defense + " " + attackRange + " " + type
-							+ " " + name + " " + genName + " " + mobility + " "
-							+ life);
 				}
 			}
 
