@@ -24,38 +24,6 @@ public class SQLBackend {
 			"i", "j" };
 
 	/**
-	 * TODO Put here a description of what this method does.
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-			connectToDB();
-
-			Statement s1 = conn.createStatement();
-			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
-			// String[] result = new String[20];
-
-			if (rs != null) {
-				while (rs.next()) {
-
-					String name = rs.getString("name");
-					String hq = rs.getString("HQ");
-					int perks = rs.getInt("perks");
-					System.out.println(name + " " + hq + " " + " " + perks);
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Connect to DB
 	 * 
 	 */
@@ -360,4 +328,11 @@ public class SQLBackend {
 		return levels.toArray(new Level[levels.size()]);
 	}
 
+	public static Units getLevelUnitForName(String name) {
+		
+		
+		return null;
+		
+	}
+	
 }

@@ -29,6 +29,7 @@ public class Level extends JComponent {
 	private ArrayList<String> levelData = new ArrayList<String>();
 	private AbstractTile[][] tileList;
 	private AbstractUnit[][] heroList;
+	private Units[][] unitList;
 	private int levelID;
 	private JFrame frame;
 	
@@ -70,7 +71,10 @@ public class Level extends JComponent {
 			}
 		}
 		
-		
+	}
+	
+	void loadLevelUnits() {
+		this.unitList = new Units[10][10];
 	}
 	
 	/**
@@ -167,7 +171,6 @@ public class Level extends JComponent {
 		if(tile.getY()/Main.TILE_SIZE+1 < 10){
 				tileSet = getTilesToHighlightHelper(this.tileList[tile.getX()/Main.TILE_SIZE][tile.getY()/Main.TILE_SIZE+1], tileSet, radius-1);
 		}
-		
 		
 		return tileSet;
 	}
