@@ -1,4 +1,6 @@
 package console_wars;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,6 +17,7 @@ public class Game {
 //	private KeyBoardListener movementListener;
 	private Player[] players;
 	private Level[] levels;
+	private CharacterMenu characters;
 	
 	/**
 	 * 
@@ -31,9 +34,10 @@ public class Game {
 
 	/**
 	 * Starts the game
+	 * @throws IOException 
 	 *
 	 */
-	public void start() {
+	public void start() throws IOException {
 		SQLBackend.connectToDB(); // must do or none of the qureies will work
 		factionSelectMenu();
 //		this.level = new Level(0, this.frame, this);
@@ -63,9 +67,10 @@ public class Game {
 	
 	/**
 	 * TODO Put here a description of what this method does.
+	 * @throws IOException 
 	 *
 	 */
-	public void factionSelectMenu() {
+	public void factionSelectMenu() throws IOException {
 		
 		String[] choices = SQLBackend.getCompaniesNamesList();
 		
@@ -89,11 +94,12 @@ public class Game {
 					choices, "0");
 				
 				if (chosen[selection] == 1){
-					//
+					
 				} else {
 					chosen[selection] = 1;
 					nonProperSelection = false;
 				}
+				this.characters.generalMenu(0);
 				
 			}
 			
