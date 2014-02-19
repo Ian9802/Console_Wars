@@ -36,19 +36,7 @@ public class MouseListener implements MouseInputListener {
 		
 //		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
-		// check win
 		
-		ArrayList<Player> activePlayers = new ArrayList<Player>();
-		
-		for (int i = 0; i < this.game.getPlayers().length; i++) {
-			if(!this.game.getPlayers()[i].lost()) {
-				activePlayers.add(this.game.getPlayers()[i]);
-			}
-		}
-		
-		if (activePlayers.size() < 2) {
-			System.out.println("Winner: " + activePlayers.get(0).getFaction());
-		}
 		
 		// check if current player has units
 		
@@ -76,6 +64,20 @@ public class MouseListener implements MouseInputListener {
 							unitToAttack = null;
 							this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
 							System.out.println("DEAD!");
+							
+							// check win
+							
+							ArrayList<Player> activePlayers = new ArrayList<Player>();
+							
+							for (int j = 0; j < this.game.getPlayers().length; i++) {
+								if(!this.game.getPlayers()[j].lost()) {
+									activePlayers.add(this.game.getPlayers()[i]);
+								}
+							}
+							
+							if (activePlayers.size() < 2) {
+								System.out.println("Winner: " + activePlayers.get(0).getFaction());
+							}
 						}
 						
 						// deselect
@@ -183,7 +185,6 @@ public class MouseListener implements MouseInputListener {
 				}
 			}
 		}
-		
 		
 //		if (this.game.getLevel().getSelectedUnit() != null) {
 //			Units tempUnit = this.game.getLevel().getSelectedUnit();
