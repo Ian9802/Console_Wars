@@ -100,7 +100,7 @@ public class Game {
 					nonProperSelection = false;
 				}
 
-				new CharacterMenu(selection);
+//				new CharacterMenu(selection);
 				
 				
 			}

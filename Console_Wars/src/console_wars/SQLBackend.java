@@ -388,10 +388,12 @@ public class SQLBackend {
 
 							if (unitName.equals("x")) {
 								unitList[i][j] = null;
-								System.out.println("null");
+//								System.out.println("null");
 							} else {
 								unitList[i][j] = getUnitForName(unitName);
-								System.out.println(unitList[i][j].getUnitName());
+								unitList[i][j].setX(Main.TILE_SIZE * i);
+								unitList[i][j].setY(Main.TILE_SIZE * j);
+//								System.out.println(unitList[i][j].getUnitName());
 							}
 
 						}

@@ -60,24 +60,23 @@ public class Level extends JComponent {
 		addMouseMotionListener(this.mouseListener);
 		addMouseListener(this.mouseListener);
 		
-		this.tileList = new AbstractTile[10][10];	
+		this.tileList = new AbstractTile[10][10];
+		
 		
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				this.tileList[i][j] = new AbstractTile(i * Main.TILE_SIZE, j * Main.TILE_SIZE);
-				
-				
-//				System.out.printf("%d, %d \n", this.tileList[i][j].getX(), this.tileList[i][j].getY());
+
 			}
 		}
 		
-		this.unitList = SQLBackend.getUnitLayout(this.levelID);
+		loadLevelUnits();
 		
 	}
 	
 	void loadLevelUnits() {
 		
-		this.unitList = new Units[10][10];
+		this.unitList = SQLBackend.getUnitLayout(this.levelID);
 
 		
 	}
@@ -100,6 +99,9 @@ public class Level extends JComponent {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				this.tileList[i][j].draw(g2);
+				if(this.unitList[i][j] != null) {
+					this.unitList[i][j].draw(g2);
+				}
 			}
 		}
 	}
