@@ -95,7 +95,8 @@ public class AbstractTile {
 	}
 	
 	public void unHighlight() {
-		setColor(this.color);
+//		setColor(this.color);
+		setColor(Color.GREEN);
 	}
 	
 	public void setMoveThrough(Boolean bool) {

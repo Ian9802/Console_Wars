@@ -23,6 +23,7 @@ public class Units extends JComponent {
 	private boolean isGeneral;
 	private boolean isDead;
 	private boolean selected;
+	private Color color;
 	
 	private UnitMouseListener mouselistener;
 
@@ -61,6 +62,16 @@ public class Units extends JComponent {
 		this.isGeneral = isGeneral;
 		this.isDead = false;
 		this.setSelected(false);
+		
+		if (name.equals("Nintendo")) {
+			this.color = Color.red;
+		} else if (name.equals("Microsoft")) {
+			this.color = Color.WHITE;
+		} else if (name.equals("Sony")) {
+			this.color = Color.blue;
+		} else {
+			this.color = Color.orange;
+		}
 		
 		this.mouselistener = new UnitMouseListener(this);
 		addMouseMotionListener(this.mouselistener);
@@ -137,7 +148,7 @@ public class Units extends JComponent {
 	public void draw(Graphics2D g2) {
 		Rectangle2D.Double tile = new Rectangle2D.Double(this.xPos, this.yPos, Main.TILE_SIZE, Main.TILE_SIZE);
 
-		g2.setColor(Color.orange);
+		g2.setColor(this.color);
 		
 		g2.fill(tile);
 		g2.draw(tile);
@@ -148,6 +159,7 @@ public class Units extends JComponent {
 	 *
 	 * @return xPos
 	 */
+	@Override
 	public int getX() {
 		return this.xPos;
 	}
@@ -157,14 +169,25 @@ public class Units extends JComponent {
 	 *
 	 * @return yPos
 	 */
+	@Override
 	public int getY() {
 		return this.yPos;
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param x
+	 */
 	public void setX(int x) {
 		this.xPos = x;
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param y
+	 */
 	public void setY(int y) {
 		this.yPos = y;
 	}
@@ -297,5 +320,21 @@ public class Units extends JComponent {
 	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+	/**
+	 * Returns the value of the field called 'color'.
+	 * @return Returns the color.
+	 */
+	public Color getColor() {
+		return  this.color;
+	}
+
+	/**
+	 * Sets the field called 'color' to the given value.
+	 * @param color The color to set.
+	 */
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }

@@ -31,6 +31,7 @@ public class Level extends JComponent {
 	private Units[][] unitList;
 	private int levelID;
 	private JFrame frame;
+	private Units selectedUnit;
 	
 	private MouseListener mouseListener;
 	
@@ -70,6 +71,7 @@ public class Level extends JComponent {
 		}
 		
 		loadLevelUnits();
+		this.setSelectedUnit(null);
 		
 	}
 	
@@ -183,6 +185,22 @@ public class Level extends JComponent {
 		}
 		
 		return tileSet;
+	}
+
+	/**
+	 * Returns the value of the field called 'selectedUnit'.
+	 * @return Returns the selectedUnit.
+	 */
+	public Units getSelectedUnit() {
+		return selectedUnit;
+	}
+
+	/**
+	 * Sets the field called 'selectedUnit' to the given value.
+	 * @param selectedUnit The selectedUnit to set.
+	 */
+	public void setSelectedUnit(Units selectedUnit) {
+		this.selectedUnit = selectedUnit;
 	}
 	
 }

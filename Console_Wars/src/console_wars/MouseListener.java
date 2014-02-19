@@ -35,13 +35,23 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		if (this.game.getLevel().getSelectedUnit() != null) {
+			Units tempUnit = this.game.getLevel().getSelectedUnit();
+			tempUnit.setSelected(false);
+			this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+			this.game.getLevel().setSelectedUnit(null);
+		}
+		
 		if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
 			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].isSelected()) {
-				this.game.unHighlightSurroundingTiles(tileXIndex, tileYIndex);
-				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(false);
+				Units tempUnit = this.game.getLevel().getSelectedUnit();
+				tempUnit.setSelected(false);
+				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+				this.game.getLevel().setSelectedUnit(null);
 			} else {
 			
 				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
+				this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
 				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
 			}
 		} else {
