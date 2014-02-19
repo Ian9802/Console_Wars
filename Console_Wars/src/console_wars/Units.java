@@ -29,11 +29,7 @@ public class Units extends JComponent {
 	private boolean isDead;
 	private boolean selected;
 	private Color color;
-<<<<<<< HEAD
-	
-//	private UnitMouseListener mouselistener;
-=======
->>>>>>> 65afcacfea0182d6bb44a1145dcf3284b891559c
+
 
 	/**
 	 * Constructs a Unit.
@@ -80,13 +76,11 @@ public class Units extends JComponent {
 		} else {
 			this.color = Color.orange;
 		}
-<<<<<<< HEAD
 		
 //		this.mouselistener = new UnitMouseListener(this);
 //		addMouseMotionListener(this.mouselistener);
 //		addMouseListener(this.mouselistener);
-=======
->>>>>>> 65afcacfea0182d6bb44a1145dcf3284b891559c
+
 	}
 	
 	/**
