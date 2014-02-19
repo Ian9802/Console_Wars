@@ -414,7 +414,7 @@ public class SQLBackend {
 	 */
 	public static void updateRegion(String name, int id) {
 
-		
+		// company name, level id
 		try {
 			Statement s1 = conn.createStatement();
 			s1.executeQuery("Exec Procedure @ID = '" + id + "'" + " @winner = '" + name + "'");

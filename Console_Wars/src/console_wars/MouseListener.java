@@ -48,6 +48,7 @@ public class MouseListener implements MouseInputListener {
 		
 		if (activePlayers.size() < 2) {
 			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
+			SQLBackend.updateRegion(this.game.getCurrentPlayer().getFaction().getName(), this.game.getLevel().getLevelID());
 		}
 		
 		// check if current player has units
