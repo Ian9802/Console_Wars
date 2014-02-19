@@ -375,7 +375,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("Exec getUnitData @unitName = '" + layoutNum + "'");
+					.executeQuery("Exec getUnitLocation @unitName = '" + layoutNum + "'");
 
 			if (rs != null) {
 				while (rs.next()) {
