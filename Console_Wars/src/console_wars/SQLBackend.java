@@ -51,7 +51,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
+					.executeQuery("Exec getCompanies");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -83,7 +83,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units]");
+					.executeQuery("Exec getUnits");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -121,7 +121,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units] WHERE unitName = genName");
+					.executeQuery("Exec getGeneral");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -162,7 +162,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [regionID],[controlling],[controlValue],[resourcesAmmo],[resourcesFuel] FROM [Console_Wars].[dbo].[Region]");
+					.executeQuery("Exec getRegion");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -194,7 +194,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [regionID],[controlling],[controlValue],[resourcesAmmo],[resourcesFuel] FROM [Console_Wars].[dbo].[Region]");
+					.executeQuery("Exec getRegion");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -288,7 +288,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 * FROM [Console_Wars].[dbo].[LevelLayout]");
+					.executeQuery("Exec getLevelLayout");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -335,7 +335,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units] WHERE [unitName] = '" + unitNameRequested + "'");
+					.executeQuery("Exec getUnitData @unitName = '" + unitNameRequested + "'");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -375,7 +375,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT * FROM [Console_Wars].[dbo].[UnitLayout] WHERE [unitID] = " + layoutNum);
+					.executeQuery("Exec getUnitData @unitName = '" + layoutNum + "'");
 
 			if (rs != null) {
 				while (rs.next()) {
