@@ -14,7 +14,6 @@ public class Game {
 	private AbstractTile[] previouslyHighlightedTiles;
 	private JFrame frame;
 	private Level level;
-//	private KeyBoardListener movementListener;
 	private Player[] players;
 	private Player currentPlayer;
 	private Level[] levels;
@@ -104,7 +103,7 @@ public class Game {
 					nonProperSelection = false;
 				}
 				
-				players[i-1] = new Player(companies[i-1]);
+				players[i-1] = new Player(companies[selection]);
 
 //				new CharacterMenu(selection);
 				
@@ -205,7 +204,7 @@ public class Game {
 	 * @return Returns the turnCount.
 	 */
 	public int getTurnCount() {
-		return turnCount;
+		return this.turnCount;
 	}
 
 	/**

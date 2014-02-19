@@ -35,6 +35,12 @@ public class MouseListener implements MouseInputListener {
 		
 //		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		if (!this.game.getLevel().hasUnitLeft(this.game.getCurrentPlayer())) {
+			this.game.setTurnCount(this.game.getTurnCount() + 1);
+			Player[] players = this.game.getPlayers();
+			this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+		}
+		
 		// Movement & Attack
 		if (this.game.getPreviouslyHighlightedTiles() != null) {
 			for (int i = 0; i < this.game.getPreviouslyHighlightedTiles().length; i++) {
