@@ -417,7 +417,7 @@ public class SQLBackend {
 		// company name, level id
 		try {
 			Statement s1 = conn.createStatement();
-			s1.executeQuery("Exec Procedure @ID = '" + id + "'" + " @winner = '" + name + "'");
+			s1.executeQuery("Exec createUser @ID = '" + id + "'" + " @winner = '" + name + "'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
