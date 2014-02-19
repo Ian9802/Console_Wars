@@ -2,8 +2,13 @@ package console_wars;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class Units extends JComponent {
@@ -25,7 +30,7 @@ public class Units extends JComponent {
 	private boolean selected;
 	private Color color;
 	
-	private UnitMouseListener mouselistener;
+//	private UnitMouseListener mouselistener;
 
 	/**
 	 * Constructs a Unit.
@@ -73,9 +78,9 @@ public class Units extends JComponent {
 			this.color = Color.orange;
 		}
 		
-		this.mouselistener = new UnitMouseListener(this);
-		addMouseMotionListener(this.mouselistener);
-		addMouseListener(this.mouselistener);
+//		this.mouselistener = new UnitMouseListener(this);
+//		addMouseMotionListener(this.mouselistener);
+//		addMouseListener(this.mouselistener);
 	}
 	
 	/**
@@ -145,13 +150,13 @@ public class Units extends JComponent {
 		this.life = life;
 	}
 	
-	public void draw(Graphics2D g2) {
-		Rectangle2D.Double tile = new Rectangle2D.Double(this.xPos, this.yPos, Main.TILE_SIZE, Main.TILE_SIZE);
-
-		g2.setColor(this.color);
-		
-		g2.fill(tile);
-		g2.draw(tile);
+	public void draw(Graphics2D g2, String character) throws IOException {
+//		BufferedImage img = new BufferedImage(Main.TILE_SIZE, Main.TILE_SIZE, BufferedImage.TYPE_INT_RGB);
+		Image image = (Image) ImageIO.read(new File("src/" + character + ".jpg"));
+		g2.setPaint(Color.WHITE);
+		g2.fill(new Rectangle2D.Double(this.xPos,this.yPos,Main.TILE_SIZE,Main.TILE_SIZE));
+		g2.fillRect(this.xPos, this.yPos, Main.TILE_SIZE, Main.TILE_SIZE);
+		g2.drawImage(image, this.xPos, this.yPos, Main.TILE_SIZE, Main.TILE_SIZE, null);
 	}
 	
 	/**

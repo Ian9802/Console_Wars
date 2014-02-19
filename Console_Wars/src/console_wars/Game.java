@@ -18,7 +18,6 @@ public class Game {
 	private Player[] players;
 	private Player currentPlayer;
 	private Level[] levels;
-	private CharacterMenu characters;
 	private int turnCount;
 	
 	/**
