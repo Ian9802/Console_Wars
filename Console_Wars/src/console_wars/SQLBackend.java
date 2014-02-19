@@ -408,4 +408,21 @@ public class SQLBackend {
 		return unitList;
 	}
 	
+	/**
+	 * TODO Put here a description of what this method does.
+	 * 
+	 */
+	public static void updateRegion(String name, int id) {
+
+		
+		try {
+			Statement s1 = conn.createStatement();
+			s1.executeQuery("Exec Procedure @ID = '" + id + "'" + " @winner = '" + name + "'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
