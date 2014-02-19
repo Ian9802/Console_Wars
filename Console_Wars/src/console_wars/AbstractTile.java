@@ -14,7 +14,7 @@ public class AbstractTile {
 	
 	private int xPos;
 	private int yPos;
-	private Boolean canMoveThrough;
+	private boolean canMoveThrough;
 	private Color color;
 	
 	/**
@@ -24,7 +24,7 @@ public class AbstractTile {
 	 * @param yPos
 	 * @param canMoveThrough
 	 */
-	public AbstractTile(int xPos, int yPos, Boolean canMoveThrough, Color color) {
+	public AbstractTile(int xPos, int yPos, boolean canMoveThrough, Color color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.canMoveThrough = canMoveThrough;
@@ -99,7 +99,12 @@ public class AbstractTile {
 		setColor(Color.GREEN);
 	}
 	
-	public void setMoveThrough(Boolean bool) {
+	public void setMoveThrough(boolean bool) {
 		this.canMoveThrough = bool;
 	}
+	
+	public boolean getMoveThrough() {
+		return this.canMoveThrough;
+	}
+
 }

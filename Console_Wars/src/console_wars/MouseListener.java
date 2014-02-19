@@ -35,12 +35,51 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		// Movement
+		
 		if (this.game.getPreviouslyHighlightedTiles() != null) {
 			for (int i = 0; i < this.game.getPreviouslyHighlightedTiles().length; i++) {
 				if (this.game.getLevel().getTileList()[tileXIndex][tileYIndex].equals(this.game.getPreviouslyHighlightedTiles()[i])) {
 					
-					// deselect
+					AbstractTile tileToMoveTo = this.game.getLevel().getTileList()[tileXIndex][tileYIndex];
 					Units unitToMove = this.game.getLevel().getSelectedUnit();
+					
+					// check if can attack
+					Units unitToAttack = this.game.getLevel().getUnitList()[tileXIndex][tileYIndex];
+					if (unitToAttack != null && unitToAttack != unitToMove) {
+						unitToAttack.setLife(unitToAttack.getLife() - (unitToMove.getAttack()));
+						System.out.println("ATTACKED Life remaining: " + unitToMove.getAttack() + " " + unitToAttack.getDefense() + " " + unitToAttack.getLife());
+						if (unitToAttack.getLife() < 0) {
+							unitToAttack.setDead(true);
+							unitToAttack = null;
+							this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
+							System.out.println("DEAD!");
+						}
+						
+						// deselect
+						
+						if (unitToMove != null) {
+							unitToMove.setSelected(false);
+							this.game.unHighlightSurroundingTiles(unitToMove.getXIndex(), unitToMove.getYIndex(), unitToMove.getMobility());
+						}
+						this.game.getLevel().setSelectedUnit(null);
+						
+						this.frame.repaint();
+						return;
+					}
+					
+					// check if can move to tile
+					if (!tileToMoveTo.getMoveThrough()) {
+						if (unitToMove != null) {
+							unitToMove.setSelected(false);
+							this.game.unHighlightSurroundingTiles(unitToMove.getXIndex(), unitToMove.getYIndex(), unitToMove.getMobility());
+						}
+						this.game.getLevel().setSelectedUnit(null);
+						return;
+					}
+					
+					// deselect
+					
 					if (unitToMove != null) {
 						unitToMove.setSelected(false);
 						this.game.unHighlightSurroundingTiles(unitToMove.getXIndex(), unitToMove.getYIndex(), unitToMove.getMobility());
@@ -49,9 +88,8 @@ public class MouseListener implements MouseInputListener {
 					
 					// move
 					
-					
-					unitToMove.setX(this.game.getLevel().getTileList()[tileXIndex][tileYIndex].getX());
-					unitToMove.setY(this.game.getLevel().getTileList()[tileXIndex][tileYIndex].getY());
+					unitToMove.setX(tileToMoveTo.getX());
+					unitToMove.setY(tileToMoveTo.getY());
 					this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
 					this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = unitToMove;
 					
