@@ -36,7 +36,6 @@ public class MouseListener implements MouseInputListener {
 //		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
 		// Movement & Attack
-		
 		if (this.game.getPreviouslyHighlightedTiles() != null) {
 			for (int i = 0; i < this.game.getPreviouslyHighlightedTiles().length; i++) {
 				if (this.game.getLevel().getTileList()[tileXIndex][tileYIndex].equals(this.game.getPreviouslyHighlightedTiles()[i])) {
@@ -64,6 +63,13 @@ public class MouseListener implements MouseInputListener {
 						}
 						this.game.getLevel().setSelectedUnit(null);
 						
+						// change player turn
+						
+						this.game.setTurnCount(this.game.getTurnCount() + 1);
+						Player[] players = this.game.getPlayers();
+						this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+						
+						
 						this.frame.repaint();
 						return;
 					}
@@ -87,8 +93,6 @@ public class MouseListener implements MouseInputListener {
 						return;
 					}
 					
-					
-					
 					// deselect
 					
 					if (unitToMove != null) {
@@ -109,6 +113,8 @@ public class MouseListener implements MouseInputListener {
 					
 					this.frame.repaint();
 					
+					// change player turn
+					
 					this.game.setTurnCount(this.game.getTurnCount() + 1);
 					Player[] players = this.game.getPlayers();
 					this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
@@ -122,34 +128,37 @@ public class MouseListener implements MouseInputListener {
 		}
 		
 		// new unit is different from previously selected unit
-		
-		if (this.game.getLevel().getSelectedUnit() != this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]) {
-			
-			// deselect previous
-			
-			Units tempUnit = this.game.getLevel().getSelectedUnit();
-			if (tempUnit != null) {
-				tempUnit.setSelected(false);
-				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
+		if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
+			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].getName().equals(this.game.getCurrentPlayer().getFaction().getName())) {
+				if (this.game.getLevel().getSelectedUnit() != this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]) {
+					
+					// deselect previous
+					
+					Units tempUnit = this.game.getLevel().getSelectedUnit();
+					if (tempUnit != null) {
+						tempUnit.setSelected(false);
+						this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
+					}
+					this.game.getLevel().setSelectedUnit(null);
+					
+					// select new unit
+					if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
+						this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
+						this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
+						this.game.highlightSurroundingTiles(tileXIndex, tileYIndex, this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].getMobility());
+					}
+					
+				} else {
+					// deselect previous unit
+					
+					Units tempUnit = this.game.getLevel().getSelectedUnit();
+					if (tempUnit != null) {
+						tempUnit.setSelected(false);
+						this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
+					}
+					this.game.getLevel().setSelectedUnit(null);
+				}
 			}
-			this.game.getLevel().setSelectedUnit(null);
-			
-			// select new unit
-			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
-				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
-				this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
-				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex, this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].getMobility());
-			}
-			
-		} else {
-			// deselect previous unit
-			
-			Units tempUnit = this.game.getLevel().getSelectedUnit();
-			if (tempUnit != null) {
-				tempUnit.setSelected(false);
-				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
-			}
-			this.game.getLevel().setSelectedUnit(null);
 		}
 		
 		
