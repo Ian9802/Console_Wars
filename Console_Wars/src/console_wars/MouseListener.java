@@ -35,28 +35,58 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
-		if (this.game.getLevel().getSelectedUnit() != null) {
+		if (this.game.getLevel().getSelectedUnit() != this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]) {
+			
+			// deselect previous
+			
 			Units tempUnit = this.game.getLevel().getSelectedUnit();
-			tempUnit.setSelected(false);
-			this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
-			this.game.getLevel().setSelectedUnit(null);
-		}
-		
-		if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
-			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].isSelected()) {
-				Units tempUnit = this.game.getLevel().getSelectedUnit();
+			if (tempUnit != null) {
 				tempUnit.setSelected(false);
 				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
-				this.game.getLevel().setSelectedUnit(null);
-			} else {
+			}
+			this.game.getLevel().setSelectedUnit(null);
 			
+			// select new unit
+			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
 				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
 				this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
 				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
 			}
+			
 		} else {
-			//
+			// deselect previous unit
+			
+			Units tempUnit = this.game.getLevel().getSelectedUnit();
+			if (tempUnit != null) {
+				tempUnit.setSelected(false);
+				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+			}
+			this.game.getLevel().setSelectedUnit(null);
 		}
+		
+		
+//		if (this.game.getLevel().getSelectedUnit() != null) {
+//			Units tempUnit = this.game.getLevel().getSelectedUnit();
+//			tempUnit.setSelected(false);
+//			this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+//			this.game.getLevel().setSelectedUnit(null);
+//		}
+//		
+//		if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
+//			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].isSelected()) {
+//				Units tempUnit = this.game.getLevel().getSelectedUnit();
+//				tempUnit.setSelected(false);
+//				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+//				this.game.getLevel().setSelectedUnit(null);
+//			} else {
+//			
+//				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
+//				this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
+//				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
+//			}
+//		} else {
+//			//
+//		}
 		
 		
 	}
@@ -99,10 +129,10 @@ public class MouseListener implements MouseInputListener {
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		
-		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
-		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
-		
-		System.out.printf("Tile: %d, %d \n",tileXIndex, tileYIndex);
+//		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
+//		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
+//		
+//		System.out.printf("Tile: %d, %d \n",tileXIndex, tileYIndex);
 		
 		
 	}
