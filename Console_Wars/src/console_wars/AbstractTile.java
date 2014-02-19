@@ -59,6 +59,14 @@ public class AbstractTile {
 		return this.yPos;
 	}
 	
+	public int getXIndex() {
+		return this.xPos/Main.TILE_SIZE;
+	}
+	
+	public int getYIndex() {
+		return this.yPos/Main.TILE_SIZE;
+	}
+	
 	public void draw(Graphics2D g2) {
 		Rectangle2D.Double tile = new Rectangle2D.Double(this.xPos, this.yPos, Main.TILE_SIZE, Main.TILE_SIZE);
 		if(this.canMoveThrough) {

@@ -33,11 +33,21 @@ public class MouseListener implements MouseInputListener {
 		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
 		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
 		
-		System.out.printf("Clicked: %d, %d \n",tileXIndex, tileYIndex);
+		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
-//		this.game.highlightTile(tileXIndex, tileYIndex);
-		this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
-		this.game.unHighlightSurroundingTiles();
+		if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
+			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].isSelected()) {
+				this.game.unHighlightSurroundingTiles(tileXIndex, tileYIndex);
+				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(false);
+			} else {
+			
+				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
+				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
+			}
+		} else {
+			//
+		}
+		
 		
 	}
 
@@ -78,20 +88,12 @@ public class MouseListener implements MouseInputListener {
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-
-//		System.out.println(arg0);
 		
 		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
 		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
 		
 		System.out.printf("Tile: %d, %d \n",tileXIndex, tileYIndex);
 		
-//		this.game.highlightTile(tileXIndex, tileYIndex);
-		
-//		AbstractTile[][] tileList = this.game.getTileList();
-//		tileList[tileXIndex][tileYIndex].highlight();
-//		
-//		this.frame.repaint();
 		
 	}
 

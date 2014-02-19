@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class Units {
+import javax.swing.JComponent;
+
+public class Units extends JComponent {
 
 	private String unitName;
 	private int ability;
@@ -20,6 +22,9 @@ public class Units {
 	private int yPos;
 	private boolean isGeneral;
 	private boolean isDead;
+	private boolean selected;
+	
+	private UnitMouseListener mouselistener;
 
 	/**
 	 * Constructs a Unit.
@@ -55,6 +60,11 @@ public class Units {
 		this.yPos = yPos;
 		this.isGeneral = isGeneral;
 		this.isDead = false;
+		this.setSelected(false);
+		
+		this.mouselistener = new UnitMouseListener(this);
+		addMouseMotionListener(this.mouselistener);
+		addMouseListener(this.mouselistener);
 	}
 	
 	/**
@@ -271,5 +281,21 @@ public class Units {
 
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
+	}
+
+	/**
+	 * Returns the value of the field called 'selected'.
+	 * @return Returns the selected.
+	 */
+	public boolean isSelected() {
+		return selected;
+	}
+
+	/**
+	 * Sets the field called 'selected' to the given value.
+	 * @param selected The selected to set.
+	 */
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

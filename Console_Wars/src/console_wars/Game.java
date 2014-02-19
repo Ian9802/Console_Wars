@@ -151,5 +151,21 @@ public class Game {
 	public Level getLevel() {
 		return this.level;
 	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param tileXIndex
+	 * @param tileYIndex
+	 */
+	public void unHighlightSurroundingTiles(int tileXIndex, int tileYIndex) {
+		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2); //set to 2 for testing purposes
+		for (int i = 0; i < tileListToHighlight.length; i++) {
+			tileListToHighlight[i].unHighlight();
+		}
+		this.previouslyHighlightedTiles = tileListToHighlight;
+		this.frame.repaint();
+		
+	}
 	
 }

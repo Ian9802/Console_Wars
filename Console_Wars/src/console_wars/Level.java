@@ -28,7 +28,6 @@ public class Level extends JComponent {
 	private int numCols;
 	private ArrayList<String> levelData = new ArrayList<String>();
 	private AbstractTile[][] tileList;
-	private AbstractUnit[][] heroList;
 	private Units[][] unitList;
 	private int levelID;
 	private JFrame frame;
@@ -113,6 +112,10 @@ public class Level extends JComponent {
 	 */
 	public AbstractTile[][] getTileList() {
 		return this.tileList;
+	}
+	
+	public Units[][] getUnitList() {
+		return this.unitList;
 	}
 	
 	public void setTile(int index1, int index2, AbstractTile tile) {
