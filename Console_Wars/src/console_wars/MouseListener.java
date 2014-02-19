@@ -33,9 +33,9 @@ public class MouseListener implements MouseInputListener {
 		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
 		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
 		
-		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
+//		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
-		// Movement
+		// Movement & Attack
 		
 		if (this.game.getPreviouslyHighlightedTiles() != null) {
 			for (int i = 0; i < this.game.getPreviouslyHighlightedTiles().length; i++) {
@@ -46,9 +46,9 @@ public class MouseListener implements MouseInputListener {
 					
 					// check if can attack
 					Units unitToAttack = this.game.getLevel().getUnitList()[tileXIndex][tileYIndex];
-					if (unitToAttack != null && unitToAttack != unitToMove) {
+					if (unitToAttack != null && unitToAttack != unitToMove && !unitToAttack.getName().equals(unitToMove.getName())) {
 						unitToAttack.setLife(unitToAttack.getLife() - (unitToMove.getAttack()));
-						System.out.println("ATTACKED Life remaining: " + unitToMove.getAttack() + " " + unitToAttack.getDefense() + " " + unitToAttack.getLife());
+						System.out.println("ATTACKED  Attacker attack: " + unitToMove.getAttack() + " Defender defense: " + unitToAttack.getDefense() + " Life remaining: " + unitToAttack.getLife());
 						if (unitToAttack.getLife() < 0) {
 							unitToAttack.setDead(true);
 							unitToAttack = null;
@@ -68,7 +68,7 @@ public class MouseListener implements MouseInputListener {
 						return;
 					}
 					
-					// check if can move to tile
+					// if cannot move to tile then return
 					if (!tileToMoveTo.getMoveThrough()) {
 						if (unitToMove != null) {
 							unitToMove.setSelected(false);
@@ -77,6 +77,17 @@ public class MouseListener implements MouseInputListener {
 						this.game.getLevel().setSelectedUnit(null);
 						return;
 					}
+					
+					if (unitToAttack != null) {
+						if (unitToMove != null) {
+							unitToMove.setSelected(false);
+							this.game.unHighlightSurroundingTiles(unitToMove.getXIndex(), unitToMove.getYIndex(), unitToMove.getMobility());
+						}
+						this.game.getLevel().setSelectedUnit(null);
+						return;
+					}
+					
+					
 					
 					// deselect
 					
@@ -87,10 +98,13 @@ public class MouseListener implements MouseInputListener {
 					this.game.getLevel().setSelectedUnit(null);
 					
 					// move
+					int x = unitToMove.getXIndex();
+					int y = unitToMove.getYIndex();
 					
 					unitToMove.setX(tileToMoveTo.getX());
 					unitToMove.setY(tileToMoveTo.getY());
-					this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
+					
+					this.game.getLevel().getUnitList()[x][y] = null;
 					this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = unitToMove;
 					
 					this.frame.repaint();
