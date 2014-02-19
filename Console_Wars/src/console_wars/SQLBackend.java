@@ -14,8 +14,8 @@ import javax.swing.JFrame;
  */
 public class SQLBackend {
 
-	private static String username = "samynpd";
-	private static String password = "W3lcom3!!";
+	private static String username = "hallami";
+	private static String password = "R0settaSt0ne";
 
 	private static String url = "jdbc:sqlserver://titan.cs.rose-hulman.edu;databaseName=Console_Wars";
 
@@ -51,7 +51,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [name],[HQ],[perks] FROM [Console_Wars].[dbo].[Companies]");
+					.executeQuery("Exec getCompanies");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -83,7 +83,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units]");
+					.executeQuery("Exec getUnits");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -121,7 +121,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units] WHERE unitName = genName");
+					.executeQuery("Exec getGeneral");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -162,7 +162,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [regionID],[controlling],[controlValue],[resourcesAmmo],[resourcesFuel] FROM [Console_Wars].[dbo].[Region]");
+					.executeQuery("Exec getRegion");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -194,7 +194,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 [regionID],[controlling],[controlValue],[resourcesAmmo],[resourcesFuel] FROM [Console_Wars].[dbo].[Region]");
+					.executeQuery("Exec getRegion");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -288,7 +288,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT TOP 1000 * FROM [Console_Wars].[dbo].[LevelLayout]");
+					.executeQuery("Exec getLevelLayout");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -335,7 +335,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT [unitName],[ability],[attack],[defense],[attackRange],[type],[name],[genName],[mobility],[life] FROM [Console_Wars].[dbo].[Units] WHERE [unitName] = '" + unitNameRequested + "'");
+					.executeQuery("Exec getUnitData @unitName = '" + unitNameRequested + "'");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -375,7 +375,7 @@ public class SQLBackend {
 
 			Statement s1 = conn.createStatement();
 			ResultSet rs = s1
-					.executeQuery("SELECT * FROM [Console_Wars].[dbo].[UnitLayout] WHERE [unitID] = " + layoutNum);
+					.executeQuery("Exec getUnitLocation @unitName = '" + layoutNum + "'");
 
 			if (rs != null) {
 				while (rs.next()) {
@@ -406,6 +406,23 @@ public class SQLBackend {
 		}
 		
 		return unitList;
+	}
+	
+	/**
+	 * TODO Put here a description of what this method does.
+	 * 
+	 */
+	public static void updateRegion(String name, int id) {
+
+		
+		try {
+			Statement s1 = conn.createStatement();
+			s1.executeQuery("Exec Procedure @ID = '" + id + "'" + " @winner = '" + name + "'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

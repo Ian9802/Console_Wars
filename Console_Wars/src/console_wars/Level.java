@@ -198,7 +198,7 @@ public class Level extends JComponent {
 	 * @return Returns the selectedUnit.
 	 */
 	public Units getSelectedUnit() {
-		return selectedUnit;
+		return this.selectedUnit;
 	}
 
 	/**
@@ -207,6 +207,22 @@ public class Level extends JComponent {
 	 */
 	public void setSelectedUnit(Units selectedUnit) {
 		this.selectedUnit = selectedUnit;
+	}
+	
+	public boolean hasUnitLeft(Player player) {
+		
+		for (int i = 0; i < this.unitList.length; i++) {
+			for (int j = 0; j < this.unitList.length; j++) {
+				if (this.unitList[i][j] != null) {
+					if (this.unitList[i][j].getName().equals(player.getFaction().getName())) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+		
 	}
 	
 }
