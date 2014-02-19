@@ -46,10 +46,9 @@ public class MouseListener implements MouseInputListener {
 					// check if can attack
 					Units unitToAttack = this.game.getLevel().getUnitList()[tileXIndex][tileYIndex];
 					if (unitToAttack != null && unitToAttack != unitToMove && !unitToAttack.getName().equals(unitToMove.getName())) {
-						unitToAttack.setLife(unitToAttack.getLife() - (unitToMove.getAttack()));
+						unitToAttack.takeDamage(unitToMove.getAttack());
 						System.out.println("ATTACKED  Attacker attack: " + unitToMove.getAttack() + " Defender defense: " + unitToAttack.getDefense() + " Life remaining: " + unitToAttack.getLife());
-						if (unitToAttack.getLife() < 0) {
-							unitToAttack.setDead(true);
+						if (unitToAttack.isDead()) {
 							unitToAttack = null;
 							this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
 							System.out.println("DEAD!");
