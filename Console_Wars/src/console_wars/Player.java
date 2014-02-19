@@ -13,5 +13,9 @@ public class Player {
 		this.faction = faction;
 	}
 	
+	public Company getFaction() {
+		return this.faction;
+	}
+	
 }
 

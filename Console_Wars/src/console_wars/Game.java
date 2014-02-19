@@ -16,8 +16,10 @@ public class Game {
 	private Level level;
 //	private KeyBoardListener movementListener;
 	private Player[] players;
+	private Player currentPlayer;
 	private Level[] levels;
 	private CharacterMenu characters;
+	private int turnCount;
 	
 	/**
 	 * 
@@ -29,6 +31,7 @@ public class Game {
 		this.frame.setSize(Main.WINDOW_SIZE);
 		this.frame.setTitle("Console Wars");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTurnCount(0);
 
 	}
 
@@ -38,14 +41,13 @@ public class Game {
 	 *
 	 */
 	public void start() throws IOException {
-		SQLBackend.connectToDB(); // must do or none of the qureies will work
-		factionSelectMenu();
-//		this.level = new Level(0, this.frame, this);
+		SQLBackend.connectToDB(); // must do or none of the queries will work
+		this.players = factionSelectMenu();
 		this.level = levelSelectMenu();
-		
 		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
+		this.currentPlayer = this.players[0];
 	}
 	
 	public Level levelSelectMenu() {
@@ -70,11 +72,13 @@ public class Game {
 	 * @throws IOException 
 	 *
 	 */
-	public void factionSelectMenu() throws IOException {
+	public Player[] factionSelectMenu() throws IOException {
 		
 		String[] choices = SQLBackend.getCompaniesNamesList();
 		
 		Company[] companies = SQLBackend.getCompanies();
+		
+		Player[] players = new Player[companies.length];
 		
 		Boolean nonProperSelection;
 		
@@ -94,18 +98,20 @@ public class Game {
 					choices, "0");
 				
 				if (chosen[selection] == 1){
-					
+					//
 				} else {
 					chosen[selection] = 1;
 					nonProperSelection = false;
 				}
+				
+				players[i-1] = new Player(companies[i-1]);
 
 //				new CharacterMenu(selection);
-				
 				
 			}
 			
 		}
+		return players;
 		
 	}
 
@@ -176,6 +182,42 @@ public class Game {
 	public void setPreviouslyHighlightedTiles(
 			AbstractTile[] previouslyHighlightedTiles) {
 		this.previouslyHighlightedTiles = previouslyHighlightedTiles;
+	}
+
+	/**
+	 * Returns the value of the field called 'currentPlayer'.
+	 * @return Returns the currentPlayer.
+	 */
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	/**
+	 * Sets the field called 'currentPlayer' to the given value.
+	 * @param currentPlayer The currentPlayer to set.
+	 */
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+	/**
+	 * Returns the value of the field called 'turnCount'.
+	 * @return Returns the turnCount.
+	 */
+	public int getTurnCount() {
+		return turnCount;
+	}
+
+	/**
+	 * Sets the field called 'turnCount' to the given value.
+	 * @param turnCount The turnCount to set.
+	 */
+	public void setTurnCount(int turnCount) {
+		this.turnCount = turnCount;
+	}
+	
+	public Player[] getPlayers() {
+		return this.players;
 	}
 	
 }

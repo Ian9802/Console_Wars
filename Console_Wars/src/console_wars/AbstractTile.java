@@ -90,7 +90,7 @@ public class AbstractTile {
 	 *
 	 */
 	public void highlight() {
-		setColor(Color.blue);
+		setColor(Color.orange);
 		
 	}
 	

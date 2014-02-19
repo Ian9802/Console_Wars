@@ -109,6 +109,13 @@ public class MouseListener implements MouseInputListener {
 					
 					this.frame.repaint();
 					
+					this.game.setTurnCount(this.game.getTurnCount() + 1);
+					Player[] players = this.game.getPlayers();
+					this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+					
+					System.out.println(this.game.getTurnCount());
+					System.out.println("Current Player: " + this.game.getCurrentPlayer().getFaction().getName());
+					
 					return;
 				}
 			}
