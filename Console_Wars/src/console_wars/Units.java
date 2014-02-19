@@ -29,11 +29,6 @@ public class Units extends JComponent {
 	private boolean isDead;
 	private boolean selected;
 	private Color color;
-<<<<<<< HEAD
-	
-//	private UnitMouseListener mouselistener;
-=======
->>>>>>> 65afcacfea0182d6bb44a1145dcf3284b891559c
 
 	/**
 	 * Constructs a Unit.
@@ -80,13 +75,6 @@ public class Units extends JComponent {
 		} else {
 			this.color = Color.orange;
 		}
-<<<<<<< HEAD
-		
-//		this.mouselistener = new UnitMouseListener(this);
-//		addMouseMotionListener(this.mouselistener);
-//		addMouseListener(this.mouselistener);
-=======
->>>>>>> 65afcacfea0182d6bb44a1145dcf3284b891559c
 	}
 	
 	/**
@@ -302,8 +290,9 @@ public class Units extends JComponent {
 	}
 
 	public void takeDamage(int attack){
-		int damage = (int)(attack * ((100 - this.defense)/100.0));
-		this.life -= damage;
+//		int damage = (int)(attack * ((100 - this.defense)/100.0));
+//		this.life -= damage;
+		this.life -= attack;
 		if(this.life <= 0){
 			this.isDead = true;
 		}

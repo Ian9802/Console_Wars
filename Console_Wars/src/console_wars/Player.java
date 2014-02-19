@@ -22,5 +22,9 @@ public class Player {
 		return this.lost;
 	}
 	
+	public void setLost(boolean lost) {
+		this.lost = lost;
+	}
+	
 }
 
