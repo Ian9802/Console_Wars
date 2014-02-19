@@ -1,6 +1,7 @@
 package console_wars;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.event.MouseInputListener;
 
@@ -35,10 +36,28 @@ public class MouseListener implements MouseInputListener {
 		
 //		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		// check win
+		
+		ArrayList<Player> activePlayers = new ArrayList<Player>();
+		
+		for (int j = 0; j < this.game.getPlayers().length; j++) {
+			if(!this.game.getPlayers()[j].lost()) {
+				activePlayers.add(this.game.getPlayers()[j]);
+			}
+		}
+		
+		if (activePlayers.size() < 2) {
+			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
+		}
+		
+		// check if current player has units
+		
 		if (!this.game.getLevel().hasUnitLeft(this.game.getCurrentPlayer())) {
+			this.game.getCurrentPlayer().setLost(true);
 			this.game.setTurnCount(this.game.getTurnCount() + 1);
 			Player[] players = this.game.getPlayers();
 			this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+			return;
 		}
 		
 		// Movement & Attack
@@ -58,6 +77,7 @@ public class MouseListener implements MouseInputListener {
 							unitToAttack = null;
 							this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
 							System.out.println("DEAD!");
+							
 						}
 						
 						// deselect
@@ -165,7 +185,6 @@ public class MouseListener implements MouseInputListener {
 				}
 			}
 		}
-		
 		
 //		if (this.game.getLevel().getSelectedUnit() != null) {
 //			Units tempUnit = this.game.getLevel().getSelectedUnit();
