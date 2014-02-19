@@ -35,6 +35,12 @@ public class MouseListener implements MouseInputListener {
 		
 //		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		if (!this.game.getLevel().hasUnitLeft(this.game.getCurrentPlayer())) {
+			this.game.setTurnCount(this.game.getTurnCount() + 1);
+			Player[] players = this.game.getPlayers();
+			this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+		}
+		
 		// Movement & Attack
 		if (this.game.getPreviouslyHighlightedTiles() != null) {
 			for (int i = 0; i < this.game.getPreviouslyHighlightedTiles().length; i++) {
@@ -46,10 +52,9 @@ public class MouseListener implements MouseInputListener {
 					// check if can attack
 					Units unitToAttack = this.game.getLevel().getUnitList()[tileXIndex][tileYIndex];
 					if (unitToAttack != null && unitToAttack != unitToMove && !unitToAttack.getName().equals(unitToMove.getName())) {
-						unitToAttack.setLife(unitToAttack.getLife() - (unitToMove.getAttack()));
+						unitToAttack.takeDamage(unitToMove.getAttack());
 						System.out.println("ATTACKED  Attacker attack: " + unitToMove.getAttack() + " Defender defense: " + unitToAttack.getDefense() + " Life remaining: " + unitToAttack.getLife());
-						if (unitToAttack.getLife() < 0) {
-							unitToAttack.setDead(true);
+						if (unitToAttack.isDead()) {
 							unitToAttack = null;
 							this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] = null;
 							System.out.println("DEAD!");
