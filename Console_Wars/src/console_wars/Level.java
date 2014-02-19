@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -101,7 +102,12 @@ public class Level extends JComponent {
 			for (int j = 0; j < 10; j++) {
 				this.tileList[i][j].draw(g2);
 				if(this.unitList[i][j] != null) {
-					this.unitList[i][j].draw(g2);
+					try {
+						this.unitList[i][j].draw(g2, this.unitList[i][j].getUnitName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		}
