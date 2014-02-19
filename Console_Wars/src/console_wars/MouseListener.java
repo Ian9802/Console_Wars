@@ -35,6 +35,8 @@ public class MouseListener implements MouseInputListener {
 		
 		System.out.printf("Clicked: %d, %d \n", tileXIndex, tileYIndex);
 		
+		
+		
 		if (this.game.getLevel().getSelectedUnit() != this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]) {
 			
 			// deselect previous
@@ -42,7 +44,7 @@ public class MouseListener implements MouseInputListener {
 			Units tempUnit = this.game.getLevel().getSelectedUnit();
 			if (tempUnit != null) {
 				tempUnit.setSelected(false);
-				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
 			}
 			this.game.getLevel().setSelectedUnit(null);
 			
@@ -50,7 +52,7 @@ public class MouseListener implements MouseInputListener {
 			if (this.game.getLevel().getUnitList()[tileXIndex][tileYIndex] != null) {
 				this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].setSelected(true);
 				this.game.getLevel().setSelectedUnit(this.game.getLevel().getUnitList()[tileXIndex][tileYIndex]);
-				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex);
+				this.game.highlightSurroundingTiles(tileXIndex, tileYIndex, this.game.getLevel().getUnitList()[tileXIndex][tileYIndex].getMobility());
 			}
 			
 		} else {
@@ -59,7 +61,7 @@ public class MouseListener implements MouseInputListener {
 			Units tempUnit = this.game.getLevel().getSelectedUnit();
 			if (tempUnit != null) {
 				tempUnit.setSelected(false);
-				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex());
+				this.game.unHighlightSurroundingTiles(tempUnit.getXIndex(), tempUnit.getYIndex(), tempUnit.getMobility());
 			}
 			this.game.getLevel().setSelectedUnit(null);
 		}

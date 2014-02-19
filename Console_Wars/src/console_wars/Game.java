@@ -132,19 +132,12 @@ public class Game {
 		
 	}
 	
-	public void highlightSurroundingTiles(int tileXIndex, int tileYIndex) {
-		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2); //set to 2 for testing purposes
+	public void highlightSurroundingTiles(int tileXIndex, int tileYIndex, int radius) {
+		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, radius); //set to 2 for testing purposes
 		for (int i = 0; i < tileListToHighlight.length; i++) {
 			tileListToHighlight[i].highlight();
 		}
-		this.previouslyHighlightedTiles = tileListToHighlight;
-		this.frame.repaint();
-	}
-	
-	public void unHighlightSurroundingTiles() {
-		for (int i = 0; i < this.previouslyHighlightedTiles.length; i++) {
-			this.previouslyHighlightedTiles[i].highlight();
-		}
+		this.setPreviouslyHighlightedTiles(tileListToHighlight);
 		this.frame.repaint();
 	}
 	
@@ -158,14 +151,31 @@ public class Game {
 	 * @param tileXIndex
 	 * @param tileYIndex
 	 */
-	public void unHighlightSurroundingTiles(int tileXIndex, int tileYIndex) {
-		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, 2); //set to 2 for testing purposes
+	public void unHighlightSurroundingTiles(int tileXIndex, int tileYIndex, int radius) {
+		AbstractTile[] tileListToHighlight = this.level.getTilesToHighlight(tileXIndex, tileYIndex, radius); //set to 2 for testing purposes
 		for (int i = 0; i < tileListToHighlight.length; i++) {
 			tileListToHighlight[i].unHighlight();
 		}
-		this.previouslyHighlightedTiles = tileListToHighlight;
+		this.setPreviouslyHighlightedTiles(null);
 		this.frame.repaint();
 		
+	}
+
+	/**
+	 * Returns the value of the field called 'previouslyHighlightedTiles'.
+	 * @return Returns the previouslyHighlightedTiles.
+	 */
+	public AbstractTile[] getPreviouslyHighlightedTiles() {
+		return this.previouslyHighlightedTiles;
+	}
+
+	/**
+	 * Sets the field called 'previouslyHighlightedTiles' to the given value.
+	 * @param previouslyHighlightedTiles The previouslyHighlightedTiles to set.
+	 */
+	public void setPreviouslyHighlightedTiles(
+			AbstractTile[] previouslyHighlightedTiles) {
+		this.previouslyHighlightedTiles = previouslyHighlightedTiles;
 	}
 	
 }
