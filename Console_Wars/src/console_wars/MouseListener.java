@@ -1,12 +1,22 @@
 package console_wars;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
+<<<<<<< HEAD
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+=======
 import java.awt.event.WindowEvent;
+>>>>>>> 54c9b419bdf4f5e9b1c1d496da96204530a573ba
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.event.MouseInputListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * Mouse Input Listener
@@ -48,6 +58,7 @@ public class MouseListener implements MouseInputListener {
 		}
 		
 		if (activePlayers.size() < 2) {
+
 			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
 			SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
 			this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
