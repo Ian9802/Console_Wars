@@ -1,10 +1,19 @@
 package console_wars;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.awt.Dimension;
+=======
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+>>>>>>> f1ec7704612548ab206f9a3bcb92c67b06e1fd36
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -32,7 +41,7 @@ public class Game {
 	 */
 	public Game() {
 		this.frame = new JFrame();
-		this.frame.setSize(Main.WINDOW_SIZE);
+		this.frame.setSize(Main.FRAME_SIZE);
 		this.frame.setTitle("Console Wars");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTurnCount(0);
@@ -48,6 +57,7 @@ public class Game {
 		SQLBackend.connectToDB(); // must do or none of the queries will work
 		this.players = factionSelectMenu();
 		this.level = levelSelectMenu();
+		
 		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
@@ -294,5 +304,22 @@ public class Game {
 
 	public JFrame getFrame() {
 		return this.frame;
+	}
+	
+	public void winner(String playerWin) throws InterruptedException{
+		Thread.sleep(500);
+		this.frame = new JFrame();
+		this.frame.setTitle("Winner is " + playerWin);
+		this.frame.setSize(400,400);
+		this.frame.setLocationRelativeTo(null);
+		this.frame.setDefaultCloseOperation(0);
+		this.frame.setVisible(true);
+		this.frame.setLayout(new BorderLayout());
+		JLabel winnerBackground = new JLabel(new ImageIcon("src/Winner.jpg"));
+		this.frame.add(winnerBackground);
+		winnerBackground.setLayout(new FlowLayout());
+		winnerBackground.add(new JLabel("Winner is " + playerWin));
+		Thread.sleep(5000);
+		this.frame.dispatchEvent(new WindowEvent(this.frame, WindowEvent.WINDOW_CLOSING));
 	}
 }
