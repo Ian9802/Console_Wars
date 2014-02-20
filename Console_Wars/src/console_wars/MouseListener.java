@@ -66,12 +66,12 @@ public class MouseListener implements MouseInputListener {
 					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
 					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
 					this.game.getFrame().repaint();
-					this.game.getFrame().getContentPane().add(new WinnerBackground());					
+//					this.game.getFrame().getContentPane().add(new WinnerBackground());					
 					Thread.sleep(5000);
 					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
 					
 
-				} catch (IOException e) {
+//				} catch (IOException e) {
 					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
 					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
 					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));

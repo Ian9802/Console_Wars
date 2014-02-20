@@ -30,7 +30,7 @@ public class Game {
 	 */
 	public Game() {
 		this.frame = new JFrame();
-		this.frame.setSize(Main.WINDOW_SIZE);
+		this.frame.setSize(Main.FRAME_SIZE);
 		this.frame.setTitle("Console Wars");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTurnCount(0);
@@ -47,6 +47,7 @@ public class Game {
 		SQLBackend.connectToDB(); // must do or none of the queries will work
 		this.players = factionSelectMenu();
 		this.level = levelSelectMenu();
+		
 		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
