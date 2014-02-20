@@ -427,4 +427,14 @@ public class SQLBackend {
 		
 	}
 	
+	public static void makeUser(String name, String password, String email){
+		
+		try {
+			Statement s1 = conn.createStatement();
+			s1.executeQuery("Exec createUser @username = '" + name + "'," + " @password = '" + password + "'," + email + "'");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
