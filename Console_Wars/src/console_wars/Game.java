@@ -1,8 +1,12 @@
 package console_wars;
 
 import java.io.IOException;
+<<<<<<< HEAD
+import java.awt.Dimension;
+=======
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+>>>>>>> f1ec7704612548ab206f9a3bcb92c67b06e1fd36
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -28,6 +32,7 @@ public class Game {
 	private Player currentPlayer;
 	private Level[] levels;
 	private int turnCount;
+	boolean wait;
 
 	/**
 	 * 
@@ -40,7 +45,6 @@ public class Game {
 		this.frame.setTitle("Console Wars");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTurnCount(0);
-
 	}
 
 	/**
@@ -62,33 +66,55 @@ public class Game {
 
 	public void createPlayer() {
 		
-		JFrame aFrame = new JFrame();
-		aFrame.setSize(Main.WINDOW_SIZE);
+		wait = true;
+		
+		final JFrame aFrame = new JFrame();
+		aFrame.setSize(new Dimension(300,300));
 		aFrame.setTitle("Console Wars");
 		aFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.createPlayer();
+		aFrame.setVisible(true);
 		
 		final JTextField text1 = new JTextField("Username");
 		text1.setBounds(1, 1, 300, 30);
+		aFrame.add(text1);
 		final JTextField text2 = new JTextField("Password");
 		text2.setBounds(1, 30, 300, 30);
-		final JTextField text3 = new JTextField("email");
-		text2.setBounds(1, 60, 300, 30);
- 
-		JButton button = new JButton("Create User");
-		button.setBounds(40, 80, 200, 40);
- 
-		aFrame.setLayout(null);
-		aFrame.add(text1);
 		aFrame.add(text2);
+		final JTextField text3 = new JTextField("email");
+		text3.setBounds(1, 60, 300, 30);
+		aFrame.add(text3);
+		
+		ActionListener l = new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			 
+			String getText1 = text1.getText();
+			String getText2 = text2.getText();
+			String getText3 = text3.getText();
+			SQLBackend.makeUser(getText1, getText2, getText3);
+			aFrame.dispose();
+			wait = false;
+		}}; 
+		ActionListener no = new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			 
+			aFrame.dispose();
+			wait = false;
+		}}; 
+		
+		JButton button = new JButton("Create User");
+		button.setBounds(40, 100, 200, 30);
+		button.addActionListener(l);
 		aFrame.add(button);
- 
-		String getText1 = text1.getText();
-		String getText2 = text2.getText();
-		String getText3 = text3.getText();
-		SQLBackend.makeUser(getText1, getText2, getText3);
-		return;
+		
+		JButton button2 = new JButton("No");
+		button2.setBounds(40, 150, 200, 30);
+		button2.addActionListener(l);
+		aFrame.add(button2);
+
 	}
 
 	public Level levelSelectMenu() {
