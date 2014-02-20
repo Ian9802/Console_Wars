@@ -47,7 +47,6 @@ public class Game {
 		SQLBackend.connectToDB(); // must do or none of the queries will work
 		this.players = factionSelectMenu();
 		this.level = levelSelectMenu();
-		this.createPlayer();
 		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
@@ -55,6 +54,13 @@ public class Game {
 	}
 
 	public void createPlayer() {
+		
+		JFrame aFrame = new JFrame();
+		aFrame.setSize(Main.WINDOW_SIZE);
+		aFrame.setTitle("Console Wars");
+		aFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		this.createPlayer();
 		
 		final JTextField text1 = new JTextField("Username");
 		text1.setBounds(1, 1, 300, 30);
@@ -66,10 +72,10 @@ public class Game {
 		JButton button = new JButton("Create User");
 		button.setBounds(40, 80, 200, 40);
  
-		this.frame.setLayout(null);
-		this.frame.add(text1);
-		this.frame.add(text2);
-		this.frame.add(button);
+		aFrame.setLayout(null);
+		aFrame.add(text1);
+		aFrame.add(text2);
+		aFrame.add(button);
  
 		String getText1 = text1.getText();
 		String getText2 = text2.getText();
