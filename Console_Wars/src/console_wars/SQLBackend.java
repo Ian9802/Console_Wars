@@ -421,8 +421,8 @@ public class SQLBackend {
 			Statement s1 = conn.createStatement();
 			s1.executeQuery("Exec regionChange @ID = '" + id + "'," + " @winner = '" + name + "'");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Thanks For Playing");
 		}
 		
 	}

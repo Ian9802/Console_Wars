@@ -49,7 +49,7 @@ public class MouseListener implements MouseInputListener {
 		
 		if (activePlayers.size() < 2) {
 			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
-			SQLBackend.updateRegion(this.game.getCurrentPlayer().getFaction().getName(), this.game.getLevel().getLevelID());
+			SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
 			this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
 		}
 		
