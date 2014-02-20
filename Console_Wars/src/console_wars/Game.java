@@ -111,6 +111,8 @@ public class Game {
 		button2.setBounds(40, 150, 200, 30);
 		button2.addActionListener(l);
 		aFrame.add(button2);
+		
+		aFrame.repaint();
 
 	}
 
