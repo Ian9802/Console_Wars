@@ -410,17 +410,19 @@ public class SQLBackend {
 	
 	/**
 	 * TODO Put here a description of what this method does.
+	 * @param name 
+	 * @param id 
 	 * 
 	 */
 	public static void updateRegion(String name, int id) {
 
-		
+		// company name, level id
 		try {
 			Statement s1 = conn.createStatement();
-			s1.executeQuery("Exec createUser @ID = '" + id + "'" + " @winner = '" + name + "'");
+			s1.executeQuery("Exec regionChange @ID = '" + id + "'," + " @winner = '" + name + "'");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Thanks For Playing");
 		}
 		
 	}
