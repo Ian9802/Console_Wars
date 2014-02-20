@@ -290,9 +290,10 @@ public class Units extends JComponent {
 	}
 
 	public void takeDamage(int attack){
-//		int damage = (int)(attack * ((100 - this.defense)/100.0));
-//		this.life -= damage;
-		this.life -= attack;
+		int damage = (int)(attack * ((100 - this.defense)/100.0));
+		this.life -= damage;
+		// for testing
+//		this.life -= attack;
 		if(this.life <= 0){
 			this.isDead = true;
 		}
