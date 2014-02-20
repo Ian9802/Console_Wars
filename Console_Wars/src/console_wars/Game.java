@@ -47,10 +47,10 @@ public class Game {
 		SQLBackend.connectToDB(); // must do or none of the queries will work
 		this.players = factionSelectMenu();
 		this.level = levelSelectMenu();
-
+		this.createPlayer();
+		
 		this.frame.setVisible(true);
 		this.frame.add(this.level);
-		this.createPlayer();
 		this.currentPlayer = this.players[0];
 	}
 
