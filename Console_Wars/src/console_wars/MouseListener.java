@@ -127,7 +127,8 @@ public class MouseListener implements MouseInputListener {
 						this.game.setTurnCount(this.game.getTurnCount() + 1);
 						Player[] players = this.game.getPlayers();
 						this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
-						
+						System.out.println(this.game.getTurnCount());
+						System.out.println("Current Player: " + this.game.getCurrentPlayer().getFaction().getName());
 						
 						this.frame.repaint();
 						return;
@@ -176,7 +177,8 @@ public class MouseListener implements MouseInputListener {
 					
 					this.game.setTurnCount(this.game.getTurnCount() + 1);
 					Player[] players = this.game.getPlayers();
-					this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+//					this.game.setCurrentPlayer(players[this.game.getTurnCount() % players.length]);
+					this.game.setCurrentPlayer(this.game.getLevel().nextAvailablePlayer());
 					
 					System.out.println(this.game.getTurnCount());
 					System.out.println("Current Player: " + this.game.getCurrentPlayer().getFaction().getName());

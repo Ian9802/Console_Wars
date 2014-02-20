@@ -220,21 +220,18 @@ public class Level extends JComponent {
 				}
 			}
 		}
-		
 		return false;
 		
 	}
 	
 	public Player nextAvailablePlayer() {
-		
-		Player nextPlayer = null;
+		Player player = null;
 		Player[] players = this.game.getPlayers();
-		for (int i = 0; i < players.length; i++) {
-			if (!players[i].lost()) {
-				
-			}
+		while (players[this.game.getTurnCount() % this.game.getPlayers().length].lost()) {
+			this.game.setTurnCount(this.game.getTurnCount() + 1);
+			
 		}
-		
-		return null;
+		player = players[this.game.getTurnCount() % this.game.getPlayers().length];
+		return player;
 	}
 }
