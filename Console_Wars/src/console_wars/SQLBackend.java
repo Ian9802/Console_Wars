@@ -431,7 +431,7 @@ public class SQLBackend {
 		
 		try {
 			Statement s1 = conn.createStatement();
-			s1.executeQuery("Exec createUser @username = '" + name + "'," + " @password = '" + password + "'," + email + "'");
+			s1.executeQuery("Exec createUser @username = '" + name + "'," + " @password = '" + password + "'," + " @email = '"+ email + "'");
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
