@@ -63,29 +63,14 @@ public class MouseListener implements MouseInputListener {
 			
 				System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
 				SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
-				try {
-<<<<<<< HEAD
-					this.game.winner(activePlayers.get(0).getFaction().getName());
-=======
+					try {
+						this.game.winner(activePlayers.get(0).getFaction().getName());
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
-					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
-					this.game.getFrame().repaint();
-//					this.game.getFrame().getContentPane().add(new WinnerBackground());					
-					Thread.sleep(5000);
-					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
-					
-
-//				} catch (IOException e) {
-					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
-					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
-					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
-					
->>>>>>> aa9f9894b060befa5463d907364915569d7d43c5
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}				
+			
 		}
 		
 		// check if current player has units
