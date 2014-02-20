@@ -218,4 +218,7 @@ public class Game {
 		return this.players;
 	}
 	
+	public JFrame getFrame() {
+		return this.frame;
+	}
 }

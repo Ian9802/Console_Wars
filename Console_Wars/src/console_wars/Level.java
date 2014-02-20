@@ -224,5 +224,4 @@ public class Level extends JComponent {
 		return false;
 		
 	}
-	
 }
