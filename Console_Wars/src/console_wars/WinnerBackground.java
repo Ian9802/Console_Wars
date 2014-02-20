@@ -9,6 +9,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class WinnerBackground extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -909968018990024554L;
 	private Image winnerImage;
 	
 	public WinnerBackground() throws IOException{
