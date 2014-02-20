@@ -1,11 +1,18 @@
 package console_wars;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.event.MouseInputListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * Mouse Input Listener
@@ -47,6 +54,7 @@ public class MouseListener implements MouseInputListener {
 		}
 		
 		if (activePlayers.size() < 2) {
+
 			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
 		}
 		
