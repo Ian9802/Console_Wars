@@ -1,16 +1,14 @@
 package console_wars;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
-<<<<<<< HEAD
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-=======
 import java.awt.event.WindowEvent;
->>>>>>> 54c9b419bdf4f5e9b1c1d496da96204530a573ba
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.event.MouseInputListener;
 
@@ -39,9 +37,12 @@ public class MouseListener implements MouseInputListener {
 		this.game = game;
 		this.frame = frame;
 	}
+	public void paintComponent(Graphics g){
+		
+	}
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent arg0){
 		int tileXIndex = (int) (arg0.getX()/new Float(Main.WINDOW_SIZE.width) * Main.BOARD_DIMENSION_BY_TILE.width);
 		int tileYIndex = (int) (arg0.getY()/new Float(Main.WINDOW_SIZE.height) * Main.BOARD_DIMENSION_BY_TILE.height);
 		
@@ -58,10 +59,28 @@ public class MouseListener implements MouseInputListener {
 		}
 		
 		if (activePlayers.size() < 2) {
+			
+			
+				try {
 
-			System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
-			SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
-			this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
+					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
+					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
+					this.game.getFrame().getContentPane().add(new WinnerBackground());					
+					Thread.sleep(5000);
+					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
+					
+
+				} catch (IOException e) {
+					System.out.println("Winner: " + activePlayers.get(0).getFaction().getName());
+					SQLBackend.updateRegion(activePlayers.get(0).getFaction().getName(), this.game.getLevel().getLevelID());
+					this.game.getFrame().dispatchEvent(new WindowEvent(this.game.getFrame(), WindowEvent.WINDOW_CLOSING));
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
 		}
 		
 		// check if current player has units
