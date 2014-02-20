@@ -224,4 +224,17 @@ public class Level extends JComponent {
 		return false;
 		
 	}
+	
+	public Player nextAvailablePlayer() {
+		
+		Player nextPlayer = null;
+		Player[] players = this.game.getPlayers();
+		for (int i = 0; i < players.length; i++) {
+			if (!players[i].lost()) {
+				
+			}
+		}
+		
+		return null;
+	}
 }

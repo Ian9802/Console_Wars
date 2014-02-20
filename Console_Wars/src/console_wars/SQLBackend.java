@@ -410,6 +410,8 @@ public class SQLBackend {
 	
 	/**
 	 * TODO Put here a description of what this method does.
+	 * @param name 
+	 * @param id 
 	 * 
 	 */
 	public static void updateRegion(String name, int id) {
