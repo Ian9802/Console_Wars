@@ -1,12 +1,9 @@
 package console_wars;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.awt.Dimension;
-=======
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
->>>>>>> f1ec7704612548ab206f9a3bcb92c67b06e1fd36
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
